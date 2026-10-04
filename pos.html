@@ -1,41 +1,80 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="lo">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>POS ร้านค้า</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap">
+<title>POS ຮ້ານຄ້າ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap">
 <style>
 :root{
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);
   padding-bottom:env(safe-area-inset-bottom,0px);
-  --bg:#f2f6f5;--surface:#ffffff;--text:#16211f;--muted:#5b6a67;--line:#d9e3e0;
-  --brand:#0f766e;--on-brand:#ffffff;--brand-soft:#d9f0ec;
-  --good:#15803d;--bad:#b91c1c;--warn:#b45309;--warn-soft:#fdf0d5;--bad-soft:#fde4e4;
-  --shadow:0 -6px 24px rgba(10,30,26,.12);
+  --bg:#faf8f5;
+  --surface:#ffffff;
+  --text:#1c1917;
+  --muted:#6b7280;
+  --line:#ebd9c8;
+  --brand:#dc2626;
+  --on-brand:#ffffff;
+  --brand-soft:#fee2e2;
+  --yellow:#eab308;
+  --yellow-soft:#fef9c3;
+  --on-yellow:#854d0e;
+  --good:#16a34a;
+  --bad:#dc2626;
+  --warn:#ca8a04;
+  --warn-soft:#fef08a;
+  --bad-soft:#fee2e2;
+  --shadow:0 -6px 24px rgba(220,38,38,.12);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#0e1514;--surface:#172220;--text:#e5efed;--muted:#93a4a1;--line:#2a3a37;
-    --brand:#2dd4bf;--on-brand:#06201c;--brand-soft:#173a35;
-    --good:#4ade80;--bad:#f87171;--warn:#fbbf24;--warn-soft:#3a2f12;--bad-soft:#40201f;
-    --shadow:0 -6px 24px rgba(0,0,0,.5);
+    --bg:#171212;
+    --surface:#221a1a;
+    --text:#fef2f2;
+    --muted:#a39595;
+    --line:#3d2c2c;
+    --brand:#ef4444;
+    --on-brand:#ffffff;
+    --brand-soft:#3d1a1a;
+    --yellow:#facc15;
+    --yellow-soft:#423408;
+    --on-yellow:#fef08a;
+    --good:#4ade80;
+    --bad:#f87171;
+    --warn:#facc15;
+    --warn-soft:#423408;
+    --bad-soft:#451a1a;
+    --shadow:0 -6px 24px rgba(0,0,0,.6);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0e1514;--surface:#172220;--text:#e5efed;--muted:#93a4a1;--line:#2a3a37;
-  --brand:#2dd4bf;--on-brand:#06201c;--brand-soft:#173a35;
-  --good:#4ade80;--bad:#f87171;--warn:#fbbf24;--warn-soft:#3a2f12;--bad-soft:#40201f;
-  --shadow:0 -6px 24px rgba(0,0,0,.5);
+  --bg:#171212;
+  --surface:#221a1a;
+  --text:#fef2f2;
+  --muted:#a39595;
+  --line:#3d2c2c;
+  --brand:#ef4444;
+  --on-brand:#ffffff;
+  --brand-soft:#3d1a1a;
+  --yellow:#facc15;
+  --yellow-soft:#423408;
+  --on-yellow:#fef08a;
+  --good:#4ade80;
+  --bad:#f87171;
+  --warn:#facc15;
+  --warn-soft:#423408;
+  --bad-soft:#451a1a;
+  --shadow:0 -6px 24px rgba(0,0,0,.6);
 }
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'IBM Plex Sans Thai','Noto Sans Thai','Noto Sans Lao',Tahoma,sans-serif;font-size:15px;line-height:1.5;padding-bottom:150px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans Lao','Noto Sans',system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.6;padding-bottom:150px}
 button,input,select,textarea{font:inherit;color:inherit}
 .num{font-variant-numeric:tabular-nums}
 header{padding:14px 16px 4px;display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:720px;margin:0 auto}
-header h1{margin:0;font-size:19px;font-weight:700}
+header h1{margin:0;font-size:20px;font-weight:700;color:var(--brand)}
 header .r{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px}
 .icon{width:40px;height:40px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center}
 .icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
@@ -50,6 +89,7 @@ h3{font-size:15px;margin:20px 0 8px;font-weight:600;color:var(--muted)}
 .btn{border:0;background:var(--brand);color:var(--on-brand);padding:11px 16px;border-radius:10px;font-weight:600;cursor:pointer;min-height:44px}
 .btn.ghost{background:transparent;color:var(--brand);border:1.5px solid var(--brand)}
 .btn.danger{background:transparent;color:var(--bad);border:1.5px solid var(--bad)}
+.btn.accent{background:var(--yellow);color:#1c1917}
 .btn.sm{padding:6px 12px;min-height:34px;font-size:13px;border-radius:8px}
 .btn.full{width:100%}
 .btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,nav button:focus-visible,.tile:focus-visible,.chip:focus-visible,.item:focus-visible,.icon:focus-visible,.seg button:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
@@ -73,30 +113,32 @@ label input,label select,label textarea{margin-top:4px;color:var(--text);font-si
 .item .t{font-weight:500}
 .item .lead{display:flex;align-items:center;gap:12px;min-width:0}
 .thumb{width:46px;height:46px;border-radius:9px;object-fit:cover;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;color:var(--brand);font-weight:700;flex:none;font-size:18px}
-.badge{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-weight:600}
+.badge{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;background:var(--yellow-soft);color:var(--on-yellow);font-weight:600}
 .badge.warn{background:var(--warn-soft);color:var(--warn)}
 .badge.bad{background:var(--bad-soft);color:var(--bad)}
+.badge.brand{background:var(--brand-soft);color:var(--brand)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
-.tile{position:relative;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:8px 8px 10px;cursor:pointer;display:flex;flex-direction:column;gap:6px}
+.tile{position:relative;text-align:left;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:8px 8px 10px;cursor:pointer;display:flex;flex-direction:column;gap:6px}
 .tile:active{transform:scale(.98)}
 .tile[disabled]{opacity:.45;cursor:not-allowed}
 .tile .im{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:var(--brand-soft);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:var(--brand)}
-.tile .nm{line-height:1.3;padding:0 2px}
+.tile .nm{line-height:1.3;padding:0 2px;font-weight:500}
 .tile .p{font-size:17px;font-weight:700;color:var(--brand);padding:0 2px}
-.tile .q{position:absolute;top:14px;right:14px;background:var(--brand);color:var(--on-brand);border-radius:999px;font-size:12px;min-width:22px;text-align:center;padding:0 6px;font-weight:700}
+.tile .q{position:absolute;top:12px;right:12px;background:var(--yellow);color:#1c1917;border-radius:999px;font-size:12px;min-width:24px;text-align:center;padding:1px 6px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.15)}
 .empty{padding:28px 16px;text-align:center;color:var(--muted)}
 nav{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);z-index:20}
 nav div{display:flex;width:100%;max-width:720px}
 nav button{flex:1;min-width:0;border:0;background:none;padding:8px 1px 7px;color:var(--muted);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
-nav button.on{color:var(--brand);font-weight:600}
+nav button.on{color:var(--brand);font-weight:700}
 nav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 #bar{position:fixed;left:12px;right:12px;bottom:calc(64px + env(safe-area-inset-bottom,0px));max-width:696px;margin:0 auto;z-index:15;display:none}
 #bar.show{display:block}
-#bar button{width:100%;display:flex;justify-content:space-between;align-items:center;border:0;background:var(--brand);color:var(--on-brand);border-radius:14px;padding:14px 18px;font-weight:700;font-size:16px;box-shadow:var(--shadow);cursor:pointer}
-#sheet{position:fixed;inset:0;background:rgba(5,15,13,.5);z-index:40;display:none;align-items:flex-end;justify-content:center}
+#bar button{width:100%;display:flex;justify-content:space-between;align-items:center;border:0;background:var(--brand);color:var(--on-brand);border-radius:14px;padding:12px 18px;font-weight:700;font-size:16px;box-shadow:var(--shadow);cursor:pointer}
+#bar .bar-badge{background:var(--yellow);color:#1c1917;padding:3px 10px;border-radius:999px;font-size:13px;font-weight:700}
+#sheet{position:fixed;inset:0;background:rgba(20,10,10,.55);z-index:40;display:none;align-items:flex-end;justify-content:center}
 #sheet.open{display:flex}
 #sheetBody{background:var(--bg);width:100%;max-width:720px;max-height:92%;overflow:auto;border-radius:18px 18px 0 0;padding:18px 16px calc(20px + env(safe-area-inset-bottom,0px))}
-#toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));transform:translateX(-50%);background:var(--text);color:var(--bg);padding:9px 16px;border-radius:999px;font-size:14px;z-index:60;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%}
+#toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));transform:translateX(-50%);background:#1c1917;color:#ffffff;padding:9px 18px;border-radius:999px;font-size:14px;z-index:60;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%;box-shadow:0 4px 12px rgba(0,0,0,.15)}
 #toast.show{opacity:1}
 .line{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--line)}
 .line:first-child{border-top:0}
@@ -119,14 +161,6 @@ nav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;st
 .meter{height:10px;border-radius:999px;background:var(--line);overflow:hidden;display:flex;margin:6px 0 10px}
 .meter i{display:block;height:100%}
 .paper{background:#fff;color:#111;border-radius:10px;padding:16px;font-size:14px;border:1px solid var(--line)}
-.inv .invh{display:flex;justify-content:space-between;gap:12px;border-bottom:2px solid #111;padding-bottom:10px;margin-bottom:8px}
-.inv table{width:100%;border-collapse:collapse;margin:8px 0}
-.inv th{text-align:left;font-weight:600;border-bottom:1px solid #999;padding:5px 0;font-size:13px}
-.inv td{padding:5px 0;border-bottom:1px solid #ddd;vertical-align:top}
-.inv th:not(:first-child),.inv td:not(:first-child){text-align:right;white-space:nowrap;padding-left:8px}
-.inv .tr{display:flex;justify-content:space-between;padding:3px 0}
-.inv .tot{font-size:17px;font-weight:700;border-top:2px solid #111;margin-top:4px;padding-top:6px}
-.inv .ft{text-align:center;margin-top:14px;color:#555;font-size:13px}
 .pimg{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 .pimg .pv{width:76px;height:76px;border-radius:12px;object-fit:cover;background:var(--brand-soft);color:var(--brand);display:flex;align-items:center;justify-content:center;font-size:12px;text-align:center;flex:none;overflow:hidden}
 .pimg .pv img{width:100%;height:100%;object-fit:cover}
@@ -144,58 +178,65 @@ nav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;st
 </head>
 <body>
 <header>
-  <h1 id="shopname">POS ร้านค้า</h1>
-  <div class="r"><span id="today"></span><button class="icon" aria-label="ตั้งค่าร้าน" onclick="settingsSheet()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3h0a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h0a1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8v0a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div>
+  <h1 id="shopname">POS ຮ້ານຄ້າ</h1>
+  <div class="r"><span id="today"></span><button class="icon" aria-label="ຕັ້ງຄ່າຮ້ານ" onclick="settingsSheet()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3h0a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5h0a1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8v0a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div>
 </header>
 <main id="view"></main>
 <div id="bar"></div>
 <nav><div>
-  <button data-t="sell" onclick="setTab('sell')"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 10.4a1 1 0 0 0 1 .8h8.2a1 1 0 0 0 1-.8L19 8H6"/><circle cx="9" cy="19" r="1.3"/><circle cx="17" cy="19" r="1.3"/></svg>ขาย</button>
-  <button data-t="prod" onclick="setTab('prod')"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>สินค้า</button>
-  <button data-t="stock" onclick="setTab('stock')"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>สต็อก</button>
-  <button data-t="cash" onclick="setTab('cash')"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg>รับ-จ่าย</button>
+  <button data-t="sell" onclick="setTab('sell')"><svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 10.4a1 1 0 0 0 1 .8h8.2a1 1 0 0 0 1-.8L19 8H6"/><circle cx="9" cy="19" r="1.3"/><circle cx="17" cy="19" r="1.3"/></svg>ຂາຍ</button>
+  <button data-t="prod" onclick="setTab('prod')"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg>ສິນຄ້າ</button>
+  <button data-t="stock" onclick="setTab('stock')"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>ສະຕັອກ</button>
+  <button data-t="cash" onclick="setTab('cash')"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg>ຮັບ-ຈ່າຍ</button>
   <button data-t="inv" onclick="setTab('inv')"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h7"/></svg>Invoice</button>
-  <button data-t="rep" onclick="setTab('rep')"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>รายงาน</button>
+  <button data-t="rep" onclick="setTab('rep')"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>ລາຍງານ</button>
 </div></nav>
 <div id="sheet" onclick="if(event.target===this)closeSheet()"><div id="sheetBody"></div></div>
 <div id="toast"></div>
 <div id="printArea"></div>
 
 <script>
-const KEY='pos_shop_v1';
+const KEY='pos_shop_lao_v1';
 var S;
-let tab='sell', period='today', cart=[], q='', catF='ทั้งหมด', stockSeg='stock', repSeg='sales';
-let pay={method:'เงินสด',disc:'',recv:'',cashPart:'',cust:''};
+let tab='sell', period='today', cart=[], q='', catF='ທັງໝົດ', stockSeg='stock', repSeg='sales';
+let pay={method:'ເງິນສົດ',disc:'',recv:'',cashPart:'',cust:''};
 let tmpImg='', tmpQr='';
 
-const SHOP0={name:'POS ร้านค้า',addr:'',phone:'',taxId:'',vat:0,cur:'฿',note:'ขอบคุณที่ใช้บริการ',qr:''};
+const SHOP0={name:'POS ຮ້ານຄ້າ',addr:'',phone:'',taxId:'',vat:0,cur:'₭',note:'ຂອບໃຈທີ່ໃຊ້ນິການ',qr:''};
 function seed(){
   const P=[
-    ['น้ำดื่ม 600 มล.','8851234500011','เครื่องดื่ม',4,7,48,12],
-    ['โค้ก 325 มล.','8851234500028','เครื่องดื่ม',10.5,15,24,12],
-    ['กาแฟกระป๋อง','8851234500066','เครื่องดื่ม',12,18,3,6],
-    ['มาม่า ต้มยำกุ้ง','8851234500035','อาหารแห้ง',5.5,7,60,20],
-    ['ไข่ไก่ เบอร์ 2 (แผง)','8851234500042','ของสด',98,120,10,3],
-    ['ขนมปังแซนวิช','8851234500059','เบเกอรี่',22,32,6,4]
+    ['ນ້ຳດື່ມ 600 ມລ.','8851234500011','ເຄື່ອງດື່ມ',5000,8000,48,12],
+    ['ໂຄ້ກ 325 ມລ.','8851234500028','ເຄື່ອງດື່ມ',10000,15000,24,12],
+    ['ກາເຟກະປ໋ອງ','8851234500066','ເຄື່ອງດື່ມ',12000,18000,20,6],
+    ['ມາມ່າ ຕົ້ມຍຳກຸ້ງ','8851234500035','ອາຫານແຫ້ງ',6000,8000,60,20],
+    ['ໄຂ່ໄກ່ ເບີ 2 (ແຜງ)','8851234500042','ຂອງສົດ',95000,115000,10,3],
+    ['ເຂົ້າຈີ່ແຊນວິດ','8851234500059','ເບເກີຣີ່',20000,30000,8,4]
   ];
   return {seq:100,shop:{...SHOP0},products:P.map((p,i)=>({id:i+1,name:p[0],sku:p[1],cat:p[2],cost:p[3],price:p[4],stock:p[5],min:p[6],img:''})),sales:[],entries:[],moves:[],purchases:[],invoices:[],invSeq:1};
 }
 function blank(){return {seq:100,shop:{...SHOP0},products:[],sales:[],entries:[],moves:[],purchases:[],invoices:[],invSeq:1}}
 function load(){
   let d=null;
-  try{const r=localStorage.getItem(KEY);if(r)d=JSON.parse(r)}catch(e){}
+  try{
+    const r=localStorage.getItem(KEY)||localStorage.getItem('pos_shop_v1');
+    if(r)d=JSON.parse(r);
+  }catch(e){}
   if(!d)return seed();
-  d.shop={...SHOP0,...(d.shop||{})};d.purchases=d.purchases||[];d.invoices=d.invoices||[];d.invSeq=d.invSeq||1;
+  d.shop={...SHOP0,...(d.shop||{})};
+  if(d.shop.cur==='฿') d.shop.cur='₭';
+  if(d.shop.name==='POS ร้านค้า') d.shop.name='POS ຮ້ານຄ້າ';
+  d.purchases=d.purchases||[];d.invoices=d.invoices||[];d.invSeq=d.invSeq||1;
   d.products.forEach(p=>{if(p.img===undefined)p.img=''});
   return d;
 }
-function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('พื้นที่เก็บข้อมูลเต็ม ลองลดจำนวนรูปภาพ')}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){toast('ພື້ນທີ່ຈັດເກັບຂໍ້ມູນເຕັມ ລອງຫຼຸດຈຳນວນຮູບພາບ')}}
 const uid=()=>S.seq++;
 const num=v=>{const x=parseFloat(v);return isNaN(x)?0:x};
 const r2=n=>Math.round(n*100)/100;
-const cur=()=>(S&&S.shop&&S.shop.cur)||'฿';
-const fmt=n=>cur()+Number(n||0).toLocaleString('th-TH',{minimumFractionDigits:0,maximumFractionDigits:2});
-const fdt=ts=>new Date(ts).toLocaleString('th-TH',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+const cur=()=>(S&&S.shop&&S.shop.cur)||'₭';
+const fmt=n=>cur()+' '+Number(n||0).toLocaleString('lo-LA',{minimumFractionDigits:0,maximumFractionDigits:2});
+const fdt=ts=>new Date(ts).toLocaleString('lo-LA',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+const fdate=ts=>new Date(ts).toLocaleDateString('lo-LA',{day:'numeric',month:'short',year:'numeric'});
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $=id=>document.getElementById(id);
 const prod=id=>S.products.find(p=>p.id===id);
@@ -209,13 +250,13 @@ function inPeriod(ts){
 function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('show'),2000)}
 function openSheet(h){$('sheetBody').innerHTML=h;$('sheet').classList.add('open')}
 function closeSheet(){$('sheet').classList.remove('open')}
-function confirmAct(msg,code){openSheet(`<h2>ยืนยัน</h2><p>${msg}</p><div class="g2"><button class="btn ghost" onclick="closeSheet()">ยกเลิก</button><button class="btn danger" onclick="${code}">ยืนยัน</button></div>`)}
+function confirmAct(msg,code){openSheet(`<h2>ຢືນຢັນ</h2><p>${msg}</p><div class="g2"><button class="btn ghost" onclick="closeSheet()">ຍົກເລີກ</button><button class="btn danger" onclick="${code}">ຢືນຢັນ</button></div>`)}
 function readImg(file,max,cb,qual){
   if(!file)return;
   const fr=new FileReader();
   fr.onload=()=>{const im=new Image();
     im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*k));c.height=Math.max(1,Math.round(im.height*k));const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',qual||0.7))};
-    im.onerror=()=>toast('เปิดไฟล์รูปไม่ได้');im.src=fr.result};
+    im.onerror=()=>toast('ບໍ່ສາມາດເປີດໄຟລ໌ຮູບໄດ້');im.src=fr.result};
   fr.readAsDataURL(file);
 }
 const thumb=(p,cls)=>p.img?`<img class="${cls||'thumb'}" src="${p.img}" alt="">`:`<div class="${cls||'thumb'}">${esc((p.name||'?').trim().charAt(0))}</div>`;
@@ -223,87 +264,87 @@ const thumb=(p,cls)=>p.img?`<img class="${cls||'thumb'}" src="${p.img}" alt="">`
 function setTab(t){tab=t;render();window.scrollTo(0,0)}
 function setPeriod(p){period=p;render()}
 function periodChips(){
-  return `<div class="chips">${[['today','วันนี้'],['week','7 วัน'],['month','เดือนนี้'],['all','ทั้งหมด']].map(([k,l])=>`<button class="chip ${period===k?'on':''}" onclick="setPeriod('${k}')">${l}</button>`).join('')}</div>`;
+  return `<div class="chips">${[['today','ມື້ນີ້'],['week','7 ມື້'],['month','ເດືອນນີ້'],['all','ທັງໝົດ']].map(([k,l])=>`<button class="chip ${period===k?'on':''}" onclick="setPeriod('${k}')">${l}</button>`).join('')}</div>`;
 }
 function seg(items,val,fn){return `<div class="seg">${items.map(([k,l])=>`<button class="${val===k?'on':''}" onclick="${fn}('${k}')">${l}</button>`).join('')}</div>`}
 function render(){
   document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===tab));
-  $('shopname').textContent=S.shop.name||'POS ร้านค้า';
+  $('shopname').textContent=S.shop.name||'POS ຮ້ານຄ້າ';
   $('view').innerHTML=({sell:viewSell,prod:viewProd,stock:viewStock,cash:viewCash,inv:viewInv,rep:viewRep})[tab]();
   renderBar();
 }
 
-/* ---------- ขายหน้าร้าน ---------- */
+/* ---------- ຂາຍໜ້າຮ້ານ ---------- */
 function cartCount(){return cart.reduce((a,c)=>a+c.qty,0)}
 function cartSub(){return cart.reduce((a,c)=>{const p=prod(c.pid);return a+(p?p.price*c.qty:0)},0)}
 function renderBar(){
   const b=$('bar');
-  if(tab==='sell'&&cart.length){b.classList.add('show');b.innerHTML=`<button onclick="openCart()"><span>ตะกร้า ${cartCount()} ชิ้น</span><span class="num">${fmt(cartSub())} · ชำระเงิน</span></button>`}
+  if(tab==='sell'&&cart.length){b.classList.add('show');b.innerHTML=`<button onclick="openCart()"><span><span class="bar-badge">${cartCount()} ອັນ</span> &nbsp;ກະຕ່າສິນຄ້າ</span><span class="num">${fmt(cartSub())} · ຊຳລະເງິນ &rsaquo;</span></button>`}
   else{b.classList.remove('show');b.innerHTML=''}
 }
 function viewSell(){
   const ts=S.sales.filter(s=>new Date(s.ts).toDateString()===new Date().toDateString());
   const sum=ts.reduce((a,s)=>a+s.total,0);
-  const cats=['ทั้งหมด',...new Set(S.products.map(p=>p.cat).filter(Boolean))];
-  return `<p class="muted small" style="margin:4px 0 10px">ยอดขายวันนี้ <b class="num" style="color:var(--text)">${fmt(sum)}</b> · ${ts.length} บิล</p>
-  <input id="q" value="${esc(q)}" placeholder="สแกนบาร์โค้ด หรือพิมพ์ชื่อสินค้า" autocomplete="off" oninput="q=this.value;$('grid').innerHTML=gridHtml()" onkeydown="if(event.key==='Enter')scanEnter()">
+  const cats=['ທັງໝົດ',...new Set(S.products.map(p=>p.cat).filter(Boolean))];
+  return `<p class="muted small" style="margin:4px 0 10px">ຍອດຂາຍມື້ນີ້ <b class="num" style="color:var(--brand)">${fmt(sum)}</b> · ${ts.length} ບິນ</p>
+  <input id="q" value="${esc(q)}" placeholder="ສະແກນບາໂຄດ ຫຼື ພິມຊື່ສິນຄ້າ" autocomplete="off" oninput="q=this.value;$('grid').innerHTML=gridHtml()" onkeydown="if(event.key==='Enter')scanEnter()">
   <div class="chips">${cats.map(c=>`<button class="chip ${catF===c?'on':''}" onclick="catF=this.dataset.c;render()" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</div>
   <div id="grid" class="grid">${gridHtml()}</div>`;
 }
 function gridHtml(){
   const k=q.trim().toLowerCase();
-  const L=S.products.filter(p=>(catF==='ทั้งหมด'||p.cat===catF)&&(!k||p.name.toLowerCase().includes(k)||String(p.sku).includes(k)));
-  if(!L.length)return `<div class="empty" style="grid-column:1/-1">${S.products.length?'ไม่พบสินค้าที่ค้นหา':'ยังไม่มีสินค้า ไปที่แท็บ “สินค้า” เพื่อเพิ่มสินค้าก่อน'}</div>`;
+  const L=S.products.filter(p=>(catF==='ທັງໝົດ'||p.cat===catF)&&(!k||p.name.toLowerCase().includes(k)||String(p.sku).includes(k)));
+  if(!L.length)return `<div class="empty" style="grid-column:1/-1">${S.products.length?'ບໍ່ພົບສິນຄ້າທີ່ຄົ້ນຫາ':'ຍັງບໍ່ມີສິນຄ້າ ໄປທີ່ແທັບ “ສິນຄ້າ” ເພື່ອເພີ່ມສິນຄ້າກ່ອນ'}</div>`;
   return L.map(p=>{
     const inCart=(cart.find(c=>c.pid===p.id)||{}).qty||0;
-    return `<button class="tile" ${p.stock<=0?'disabled':''} onclick="addCart(${p.id})">${inCart?`<span class="q">${inCart}</span>`:''}${thumb(p,'im')}<span class="nm">${esc(p.name)}</span><span class="p num">${fmt(p.price)}</span><span class="small ${p.stock<=p.min?'bad':'muted'}" style="padding:0 2px">${p.stock<=0?'สินค้าหมด':'เหลือ '+p.stock}</span></button>`;
+    return `<button class="tile" ${p.stock<=0?'disabled':''} onclick="addCart(${p.id})">${inCart?`<span class="q">${inCart}</span>`:''}${thumb(p,'im')}<span class="nm">${esc(p.name)}</span><span class="p num">${fmt(p.price)}</span><span class="small ${p.stock<=p.min?'bad':'muted'}" style="padding:0 2px">${p.stock<=0?'ສິນຄ້າໝົດ':'ຍັງເຫຼືອ '+p.stock}</span></button>`;
   }).join('');
 }
 function scanEnter(){
   const k=q.trim();if(!k)return;
   const p=S.products.find(x=>String(x.sku)===k);
   if(p){addCart(p.id);q='';$('q').value='';$('grid').innerHTML=gridHtml()}
-  else toast('ไม่พบบาร์โค้ดนี้');
+  else toast('ບໍ່ພົບບາໂຄດນີ້');
 }
 function addCart(pid){
   const p=prod(pid);if(!p)return;
   const c=cart.find(x=>x.pid===pid);
-  if((c?c.qty:0)+1>p.stock){toast('สต็อกไม่พอ เหลือ '+p.stock);return}
+  if((c?c.qty:0)+1>p.stock){toast('ສະຕັອກບໍ່ພໍ ຍັງເຫຼືອ '+p.stock);return}
   if(c)c.qty++;else cart.push({pid,qty:1});
   const g=$('grid');if(g)g.innerHTML=gridHtml();
   renderBar();
 }
 function chgQty(pid,d){
   const c=cart.find(x=>x.pid===pid),p=prod(pid);if(!c)return;
-  if(d>0&&c.qty+1>p.stock){toast('สต็อกไม่พอ เหลือ '+p.stock);return}
+  if(d>0&&c.qty+1>p.stock){toast('ສະຕັອກບໍ່ພໍ ຍັງເຫຼືອ '+p.stock);return}
   c.qty+=d;
   if(c.qty<=0)cart=cart.filter(x=>x.pid!==pid);
   if(!cart.length){closeSheet();render();return}
   cartSheet();renderBar();
 }
-function openCart(){pay={method:'เงินสด',disc:'',recv:'',cashPart:'',cust:''};cartSheet()}
+function openCart(){pay={method:'ເງິນສົດ',disc:'',recv:'',cashPart:'',cust:''};cartSheet()}
 function qrBlock(){
   return S.shop.qr
-    ?`<div class="qrbox"><img src="${S.shop.qr}" alt="QR รับชำระเงิน"><div class="num" id="t_qrAmt"></div></div>`
-    :`<p class="note">ยังไม่ได้ใส่รูป QR ของร้าน ไปที่ไอคอนตั้งค่าด้านบนเพื่ออัปโหลด</p>`;
+    ?`<div class="qrbox"><img src="${S.shop.qr}" alt="QR ຮັບເງິນ"><div class="num" id="t_qrAmt"></div></div>`
+    :`<p class="note">ຍັງບໍ່ໄດ້ໃສ່ຮູບ QR ຂອງຮ້ານ ໄປທີ່ໄອຄອນຕັ້ງຄ່າດ້ານເທິງເພື່ອອັບໂຫຼດ</p>`;
 }
 function cartSheet(){
   const m=pay.method;
-  openSheet(`<h2>ตะกร้าสินค้า</h2>
-  <div class="list" style="padding:0 14px">${cart.map(c=>{const p=prod(c.pid);return `<div class="line" style="align-items:center"><div class="lead" style="display:flex;gap:10px;align-items:center;min-width:0">${thumb(p)}<div><div class="t">${esc(p.name)}</div><div class="muted small num">${fmt(p.price)} × ${c.qty} = ${fmt(p.price*c.qty)}</div></div></div><div class="qty"><button aria-label="ลด" onclick="chgQty(${p.id},-1)">−</button><b class="num">${c.qty}</b><button aria-label="เพิ่ม" onclick="chgQty(${p.id},1)">+</button></div></div>`}).join('')}</div>
+  openSheet(`<h2>ກະຕ່າສິນຄ້າ</h2>
+  <div class="list" style="padding:0 14px">${cart.map(c=>{const p=prod(c.pid);return `<div class="line" style="align-items:center"><div class="lead" style="display:flex;gap:10px;align-items:center;min-width:0">${thumb(p)}<div><div class="t">${esc(p.name)}</div><div class="muted small num">${fmt(p.price)} × ${c.qty} = ${fmt(p.price*c.qty)}</div></div></div><div class="qty"><button aria-label="ຫຼຸດ" onclick="chgQty(${p.id},-1)">−</button><b class="num">${c.qty}</b><button aria-label="ເພີ່ມ" onclick="chgQty(${p.id},1)">+</button></div></div>`}).join('')}</div>
   <div style="height:14px"></div>
-  <div class="g2"><label>ส่วนลด<input id="disc" type="number" inputmode="decimal" min="0" value="${esc(pay.disc)}" oninput="pay.disc=this.value;payTotals()"></label><label>ชื่อลูกค้า (ไม่บังคับ)<input id="cust" value="${esc(pay.cust)}" oninput="pay.cust=this.value"></label></div>
-  <div class="pay">${['เงินสด','QR','แบ่งจ่าย'].map(x=>`<button class="chip ${m===x?'on':''}" onclick="pay.method=this.dataset.m;cartSheet()" data-m="${x}">${x==='แบ่งจ่าย'?'แบ่งจ่าย (สด+QR)':x}</button>`).join('')}</div>
-  ${m==='เงินสด'?`<label>รับเงินมา<input id="recv" type="number" inputmode="decimal" min="0" value="${esc(pay.recv)}" oninput="pay.recv=this.value;payTotals()"></label>`:''}
+  <div class="g2"><label>ສ່ວນຫຼຸດ<input id="disc" type="number" inputmode="decimal" min="0" value="${esc(pay.disc)}" oninput="pay.disc=this.value;payTotals()"></label><label>ຊື່ລູກຄ້າ (ບໍ່ບັງຄັບ)<input id="cust" value="${esc(pay.cust)}" oninput="pay.cust=this.value"></label></div>
+  <div class="pay">${['ເງິນສົດ','QR','ແບ່ງຈ່າຍ'].map(x=>`<button class="chip ${m===x?'on':''}" onclick="pay.method=this.dataset.m;cartSheet()" data-m="${x}">${x==='ແບ່ງຈ່າຍ'?'ແບ່ງຈ່າຍ (ສົດ+QR)':x}</button>`).join('')}</div>
+  ${m==='ເງິນສົດ'?`<label>ຮັບເງິນມາ<input id="recv" type="number" inputmode="decimal" min="0" value="${esc(pay.recv)}" oninput="pay.recv=this.value;payTotals()"></label>`:''}
   ${m==='QR'?qrBlock():''}
-  ${m==='แบ่งจ่าย'?`<label>ส่วนที่จ่ายเป็นเงินสด<input id="cpart" type="number" inputmode="decimal" min="0" value="${esc(pay.cashPart)}" oninput="pay.cashPart=this.value;payTotals()"></label>${qrBlock()}`:''}
-  <div class="line"><span class="muted">รวม</span><span class="num" id="t_sub"></span></div>
-  <div class="line"><span class="muted">ส่วนลด</span><span class="num" id="t_disc"></span></div>
-  <div class="line"><b>ยอดสุทธิ</b><b class="num" style="font-size:20px" id="t_total"></b></div>
-  ${m==='เงินสด'?`<div class="line"><span class="muted">เงินทอน</span><b class="num" id="t_change"></b></div>`:''}
-  ${m==='แบ่งจ่าย'?`<div class="line"><span class="muted">ส่วนที่เหลือจ่าย QR</span><b class="num" id="t_rest"></b></div>`:''}
+  ${m==='ແບ່ງຈ່າຍ'?`<label>ສ່ວນທີ່ຈ່າຍເປັນເງິນສົດ<input id="cpart" type="number" inputmode="decimal" min="0" value="${esc(pay.cashPart)}" oninput="pay.cashPart=this.value;payTotals()"></label>${qrBlock()}`:''}
+  <div class="line"><span class="muted">ລວມ</span><span class="num" id="t_sub"></span></div>
+  <div class="line"><span class="muted">ສ່ວນຫຼຸດ</span><span class="num" id="t_disc"></span></div>
+  <div class="line"><b>ຍອດສຸດທິ</b><b class="num" style="font-size:20px;color:var(--brand)" id="t_total"></b></div>
+  ${m==='ເງິນສົດ'?`<div class="line"><span class="muted">ເງິນທອນ</span><b class="num" id="t_change"></b></div>`:''}
+  ${m==='ແບ່ງຈ່າຍ'?`<div class="line"><span class="muted">ສ່ວນທີ່ເຫຼືອຈ່າຍ QR</span><b class="num" id="t_rest"></b></div>`:''}
   <div style="height:12px"></div>
-  <div class="g2"><button class="btn ghost" onclick="closeSheet()">กลับไปเลือกต่อ</button><button class="btn" onclick="checkout()">รับชำระเงิน</button></div>`);
+  <div class="g2"><button class="btn ghost" onclick="closeSheet()">ກັບໄປເລືອກຕໍ່</button><button class="btn" onclick="checkout()">ຮັບຊຳລະເງິນ</button></div>`);
   payTotals();
 }
 function totals(){
@@ -314,52 +355,50 @@ function payTotals(){
   const t=totals();
   $('t_sub').textContent=fmt(t.sub);$('t_disc').textContent='−'+fmt(t.d);$('t_total').textContent=fmt(t.total);
   const ch=$('t_change');
-  if(ch){const rv=pay.recv===''?null:num(pay.recv);ch.textContent=rv===null?'—':(rv<t.total?'รับเงินไม่พอ':fmt(rv-t.total));ch.className='num '+(rv!==null&&rv<t.total?'bad':'good')}
+  if(ch){const rv=pay.recv===''?null:num(pay.recv);ch.textContent=rv===null?'—':(rv<t.total?'ຮັບເງິນບໍ່ພໍ':fmt(rv-t.total));ch.className='num '+(rv!==null&&rv<t.total?'bad':'good')}
   const qa=$('t_qrAmt');
-  if(qa){const cp=pay.method==='แบ่งจ่าย'?Math.min(Math.max(num(pay.cashPart),0),t.total):0;qa.textContent='สแกนจ่าย '+fmt(t.total-cp)}
+  if(qa){const cp=pay.method==='ແບ່ງຈ່າຍ'?Math.min(Math.max(num(pay.cashPart),0),t.total):0;qa.textContent='ສະແກນຈ່າຍ '+fmt(t.total-cp)}
   const rs=$('t_rest');
   if(rs){const cp=Math.min(Math.max(num(pay.cashPart),0),t.total);rs.textContent=fmt(t.total-cp)}
 }
 function checkout(){
   const t=totals();
   let cash=0,qr=0;
-  if(pay.method==='เงินสด'){
-    if(pay.recv!==''&&num(pay.recv)<t.total){toast('รับเงินไม่พอ');return}
+  if(pay.method==='ເງິນສົດ'){
+    if(pay.recv!==''&&num(pay.recv)<t.total){toast('ຮັບເງິນບໍ່ພໍ');return}
     cash=t.total;
   }else if(pay.method==='QR'){qr=t.total}
   else{
     cash=Math.min(Math.max(num(pay.cashPart),0),t.total);qr=r2(t.total-cash);
-    if(cash<=0||qr<=0){toast('แบ่งจ่าย: ยอดเงินสดต้องมากกว่า 0 และน้อยกว่ายอดสุทธิ');return}
+    if(cash<=0||qr<=0){toast('ແບ່ງຈ່າຍ: ຍອດເງິນສົດຕ້ອງຫຼາຍກວ່າ 0 ແລະ ໜ້ອຍກວ່າທັງໝົດ');return}
   }
   const now=Date.now(),id=uid();
   const items=cart.map(c=>{const p=prod(c.pid);return {pid:p.id,name:p.name,qty:c.qty,price:p.price,cost:p.cost}});
   const cogs=r2(items.reduce((a,i)=>a+i.cost*i.qty,0));
-  const label=pay.method==='แบ่งจ่าย'?'แบ่งจ่าย (เงินสด+QR)':pay.method;
-  const sale={id,no:'POS-'+String(id).padStart(5,'0'),ts:now,items,discount:t.d,total:t.total,cogs,method:label,pay:{cash,qr},received:pay.method==='เงินสด'&&pay.recv!==''?num(pay.recv):cash,cust:pay.cust.trim(),vat:num(S.shop.vat)};
-  items.forEach(i=>{const p=prod(i.pid);p.stock-=i.qty;S.moves.push({id:uid(),ts:now,pid:p.id,name:p.name,qty:-i.qty,kind:'ขาย '+sale.no})});
+  const label=pay.method==='ແບ່ງຈ່າຍ'?'ແບ່ງຈ່າຍ (ເງິນສົດ+QR)':pay.method;
+  const sale={id,no:'POS-'+String(id).padStart(5,'0'),ts:now,items,discount:t.d,total:t.total,cogs,method:label,pay:{cash,qr},received:pay.method==='ເງິນສົດ'&&pay.recv!==''?num(pay.recv):cash,cust:pay.cust.trim(),vat:num(S.shop.vat)};
+  items.forEach(i=>{const p=prod(i.pid);p.stock-=i.qty;S.moves.push({id:uid(),ts:now,pid:p.id,name:p.name,qty:-i.qty,kind:'ຂາຍ '+sale.no})});
   S.sales.push(sale);
-  S.entries.push({id:uid(),ts:now,type:'income',cat:'ขายสินค้า',amount:t.total,note:sale.no+' · '+label,auto:'sale'});
+  S.entries.push({id:uid(),ts:now,type:'income',cat:'ຂາຍສິນຄ້າ',amount:t.total,note:sale.no+' · '+label,auto:'sale'});
   cart=[];save();
   render();saleSheet(id,true);
 }
 
-/* ---------- Invoice ---------- */
+/* ---------- Invoice / ໃບເກັບເງິນ ---------- */
 function payOf(s){
   if(s.pay)return {cash:s.pay.cash||0,qr:s.pay.qr||0,other:0};
-  return {cash:s.method==='เงินสด'?s.total:0,qr:/QR/.test(s.method)?s.total:0,other:/บัตร/.test(s.method)?s.total:0};
+  return {cash:s.method==='ເງິນສົດ'?s.total:0,qr:/QR/.test(s.method)?s.total:0,other:/ບັດ/.test(s.method)?s.total:0};
 }
-/* ---------- ใบเสร็จ POS (ง่าย ๆ) ---------- */
 function saleSheet(id,done){
   const s=S.sales.find(x=>x.id===id);if(!s)return;
-  const sub=s.items.reduce((a,i)=>a+i.price*i.qty,0);
-  openSheet(`<h2>${done?'รับชำระเรียบร้อย':'บิล '+esc(s.no)}</h2><p class="muted small" style="margin-top:-6px">${esc(s.no)} · ${fdt(s.ts)} · ${esc(s.method)}${s.cust?' · '+esc(s.cust):''}</p>
+  openSheet(`<h2>${done?'ຮັບຊຳລະຮຽບຮ້ອຍ':'ບິນ '+esc(s.no)}</h2><p class="muted small" style="margin-top:-6px">${esc(s.no)} · ${fdt(s.ts)} · ${esc(s.method)}${s.cust?' · '+esc(s.cust):''}</p>
   <div class="list" style="padding:0 14px">${s.items.map(i=>`<div class="line"><span>${esc(i.name)} × ${i.qty}</span><span class="num">${fmt(i.price*i.qty)}</span></div>`).join('')}</div>
-  ${s.discount>0?`<div class="line"><span class="muted">ส่วนลด</span><span class="num">−${fmt(s.discount)}</span></div>`:''}
-  <div class="line"><b>ยอดสุทธิ</b><b class="num" style="font-size:20px">${fmt(s.total)}</b></div>
-  ${s.method==='เงินสด'&&s.received>s.total?`<div class="line"><span class="muted">รับเงิน / ทอน</span><span class="num">${fmt(s.received)} / ${fmt(s.received-s.total)}</span></div>`:''}
+  ${s.discount>0?`<div class="line"><span class="muted">ສ່ວນຫຼຸດ</span><span class="num">−${fmt(s.discount)}</span></div>`:''}
+  <div class="line"><b>ຍອດສຸດທິ</b><b class="num" style="font-size:20px;color:var(--brand)">${fmt(s.total)}</b></div>
+  ${s.method==='ເງິນສົດ'&&s.received>s.total?`<div class="line"><span class="muted">ຮັບເງິນ / ທອນ</span><span class="num">${fmt(s.received)} / ${fmt(s.received-s.total)}</span></div>`:''}
   <div style="height:12px"></div>
-  <div class="g2"><button class="btn ghost" onclick="invFromSale(${id})">สร้าง Invoice จากบิลนี้</button><button class="btn" onclick="closeSheet()">${done?'ขายรายการต่อไป':'ปิด'}</button></div>
-  ${done?'':`<button class="btn danger full" style="margin-top:10px" onclick="confirmAct('ยกเลิกบิล ${s.no}? สต็อกจะถูกคืนและรายการเงินเข้าจะถูกลบ','voidSale(${id})')">ยกเลิกบิลนี้</button>`}`);
+  <div class="g2"><button class="btn ghost" onclick="invFromSale(${id})">ສ້າງ Invoice ຈາກບິນນີ້</button><button class="btn" onclick="closeSheet()">${done?'ຂາຍລາຍການຕໍ່ໄປ':'ປິດ'}</button></div>
+  ${done?'':`<button class="btn danger full" style="margin-top:10px" onclick="confirmAct('ຍົກເລີກບິນ ${s.no}? ສະຕັອກຈະຖືກຄືນ ແລະ ລາຍການເງິນເຂົ້າຈະຖືກລຶບ','voidSale(${id})')">ຍົກເລີກບິນນີ້</button>`}`);
 }
 function invFromSale(id){
   const s=S.sales.find(x=>x.id===id);if(!s)return;
@@ -367,11 +406,9 @@ function invFromSale(id){
   invSheet(null,{custName:s.cust||'',items:s.items.map(i=>({name:i.name,qty:i.qty,price:i.price})),discount:s.discount||0,vat:0});
 }
 
-/* ---------- Invoice (แท็บแยก) ---------- */
 let invFilter='all',fItems=[],lastInv=null;
 const ymd=ts=>{const d=new Date(ts);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 const fromYmd=v=>v?new Date(v+'T12:00:00').getTime():Date.now();
-const fdate=ts=>new Date(ts).toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'});
 const fdEn=ts=>new Date(ts).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
 function calcInv(items,disc,vr){
   const sub=items.reduce((a,i)=>a+num(i.qty)*num(i.price),0),d=Math.min(Math.max(num(disc),0),sub),base=sub-d,vat=vr>0?r2(base*vr/100):0;
@@ -379,41 +416,41 @@ function calcInv(items,disc,vr){
 }
 const invTotal=v=>calcInv(v.items,v.discount,v.vat).total;
 const isOverdue=v=>v.status!=='paid'&&v.due&&new Date(v.due).toDateString()!==new Date().toDateString()&&v.due<Date.now();
-function invBadge(v){return v.status==='paid'?'<span class="badge">จ่ายแล้ว</span>':isOverdue(v)?'<span class="badge bad">เกินกำหนด</span>':'<span class="badge warn">ค้างจ่าย</span>'}
+function invBadge(v){return v.status==='paid'?'<span class="badge">ຈ່າຍແລ້ວ</span>':isOverdue(v)?'<span class="badge bad">ກາຍກຳນົດ</span>':'<span class="badge warn">ຄ້າງຈ່າຍ</span>'}
 function setInvF(k){invFilter=k;render()}
 function viewInv(){
   const A=S.invoices;
   const unpaid=A.filter(v=>v.status!=='paid').reduce((a,v)=>a+invTotal(v),0);
   const paid=A.filter(v=>v.status==='paid').reduce((a,v)=>a+invTotal(v),0);
   const L=A.filter(v=>invFilter==='all'||(invFilter==='paid'?v.status==='paid':v.status!=='paid')).sort((a,b)=>b.ts-a.ts||b.id-a.id);
-  return `<div class="row between" style="margin:6px 0 4px"><h2 style="margin:0">Invoice</h2><button class="btn sm" onclick="invSheet()">+ สร้าง Invoice</button></div>
-  <div class="strip"><div><span class="muted small">ค้างจ่าย</span><b class="num ${unpaid>0?'bad':''}">${fmt(unpaid)}</b></div><div><span class="muted small">รับเงินแล้ว</span><b class="num good">${fmt(paid)}</b></div><div><span class="muted small">ทั้งหมด</span><b class="num">${A.length} ใบ</b></div></div>
-  <div class="chips">${[['all','ทั้งหมด'],['unpaid','ค้างจ่าย'],['paid','จ่ายแล้ว']].map(([k,l])=>`<button class="chip ${invFilter===k?'on':''}" onclick="setInvF('${k}')">${l}</button>`).join('')}</div>
-  ${L.length?`<div class="list">${L.map(v=>`<div class="item" tabindex="0" onclick="invView(${v.id})"><div style="min-width:0"><div class="t">${esc(v.no)} · ${esc(v.custName)}</div><div class="muted small">ออก ${fdate(v.ts)}${v.due?' · ครบ '+fdate(v.due):''}</div></div><div style="text-align:right;flex:none"><b class="num">${fmt(invTotal(v))}</b><br>${invBadge(v)}</div></div>`).join('')}</div>`:`<div class="empty">${A.length?'ไม่มี Invoice ในหมวดนี้':'ยังไม่มี Invoice กด “สร้าง Invoice” เพื่อเริ่มต้น'}</div>`}
-  <p class="note">Invoice แยกจากการขายหน้าร้าน ไม่ตัดสต็อกอัตโนมัติ เมื่อทำเครื่องหมายว่าจ่ายแล้ว ยอดจะเข้าไปที่รายรับและรายงานกำไร-ขาดทุน</p>`;
+  return `<div class="row between" style="margin:6px 0 4px"><h2 style="margin:0">Invoice (ໃບເກັບເງິນ)</h2><button class="btn sm" onclick="invSheet()">+ ສ້າງ Invoice</button></div>
+  <div class="strip"><div><span class="muted small">ຄ້າງຈ່າຍ</span><b class="num ${unpaid>0?'bad':''}">${fmt(unpaid)}</b></div><div><span class="muted small">ຮັບເງິນແລ້ວ</span><b class="num good">${fmt(paid)}</b></div><div><span class="muted small">ທັງໝົດ</span><b class="num">${A.length} ໃບ</b></div></div>
+  <div class="chips">${[['all','ທັງໝົດ'],['unpaid','ຄ້າງຈ່າຍ'],['paid','ຈ່າຍແລ້ວ']].map(([k,l])=>`<button class="chip ${invFilter===k?'on':''}" onclick="setInvF('${k}')">${l}</button>`).join('')}</div>
+  ${L.length?`<div class="list">${L.map(v=>`<div class="item" tabindex="0" onclick="invView(${v.id})"><div style="min-width:0"><div class="t">${esc(v.no)} · ${esc(v.custName)}</div><div class="muted small">ອອກ ${fdate(v.ts)}${v.due?' · ຄົບ '+fdate(v.due):''}</div></div><div style="text-align:right;flex:none"><b class="num">${fmt(invTotal(v))}</b><br>${invBadge(v)}</div></div>`).join('')}</div>`:`<div class="empty">${A.length?'ບໍ່ມີ Invoice ໃນໝວດນີ້':'ຍັງບໍ່ມີ Invoice ກົດ “ສ້າງ Invoice” ເພື່ອເລີ່ມຕົ້ນ'}</div>`}
+  <p class="note">Invoice ແຍກຈາກການຂາຍໜ້າຮ້ານ ບໍ່ຕັດສະຕັອກອັດຕະໂນມັດ ເມື່ອໝາຍວ່າຈ່າຍແລ້ວ ຍອດຈະເຂົ້າໄປທີ່ລາຍຮັບ ແລະ ລາຍງານກຳໄລ-ຂາດທຶນ</p>`;
 }
 function invSheet(id,pre){
   const v=id?S.invoices.find(x=>x.id===id):null,b=v||pre||{};
   fItems=(b.items&&b.items.length?b.items:[{name:'',qty:1,price:''}]).map(i=>({name:i.name,qty:i.qty,price:i.price}));
   const vat=b.vat!==undefined?b.vat:num(S.shop.vat);
-  openSheet(`<h2>${v?'แก้ไข '+esc(v.no):'สร้าง Invoice'}</h2>
-  <label>ชื่อลูกค้า / บริษัท<input id="i_name" value="${esc(b.custName||'')}"></label>
-  <label>ที่อยู่<input id="i_addr" value="${esc(b.custAddr||'')}"></label>
-  <label>เบอร์โทร<input id="i_phone" value="${esc(b.custPhone||'')}"></label>
-  <div class="g2"><label>วันที่ออก<input id="i_date" type="date" value="${ymd(v?v.ts:Date.now())}"></label><label>ครบกำหนดชำระ<input id="i_due" type="date" value="${ymd(v?(v.due||v.ts):Date.now()+7*864e5)}"></label></div>
-  <h3 style="margin-top:6px">รายการ</h3>
+  openSheet(`<h2>${v?'ແກ້ໄຂ '+esc(v.no):'ສ້າງ Invoice'}</h2>
+  <label>ຊື່ລູກຄ້າ / ບໍລິສັດ<input id="i_name" value="${esc(b.custName||'')}"></label>
+  <label>ທີ່ຢູ່<input id="i_addr" value="${esc(b.custAddr||'')}"></label>
+  <label>ເບີໂທ<input id="i_phone" value="${esc(b.custPhone||'')}"></label>
+  <div class="g2"><label>ວັນທີອອກ<input id="i_date" type="date" value="${ymd(v?v.ts:Date.now())}"></label><label>ຄົບກຳນົດຊຳລະ<input id="i_due" type="date" value="${ymd(v?(v.due||v.ts):Date.now()+7*864e5)}"></label></div>
+  <h3 style="margin-top:6px">ລາຍການ</h3>
   <datalist id="plist">${S.products.map(p=>`<option value="${esc(p.name)}"></option>`).join('')}</datalist>
-  <div class="muted small" style="display:grid;grid-template-columns:1fr 62px 90px 34px;gap:6px;margin-bottom:4px"><span>รายการ</span><span>จำนวน</span><span>ราคา/หน่วย</span><span></span></div>
+  <div class="muted small" style="display:grid;grid-template-columns:1fr 62px 90px 34px;gap:6px;margin-bottom:4px"><span>ລາຍການ</span><span>ຈຳນວນ</span><span>ລາຄາ/ໜ່ວຍ</span><span></span></div>
   <div id="irows"></div>
-  <button class="btn sm ghost" onclick="addIRow()">+ เพิ่มรายการ</button>
-  <div class="g2" style="margin-top:14px"><label>ส่วนลด<input id="i_disc" type="number" inputmode="decimal" value="${b.discount||''}" oninput="invTot()"></label><label>VAT % (บวกเพิ่มจากยอด)<input id="i_vat" type="number" inputmode="decimal" value="${vat}" oninput="invTot()"></label></div>
-  <label>หมายเหตุ / เงื่อนไขการชำระเงิน<textarea id="i_note" rows="3">${esc(b.note||'')}</textarea></label>
+  <button class="btn sm ghost" onclick="addIRow()">+ ເພີ່ມລາຍການ</button>
+  <div class="g2" style="margin-top:14px"><label>ສ່ວນຫຼຸດ<input id="i_disc" type="number" inputmode="decimal" value="${b.discount||''}" oninput="invTot()"></label><label>VAT % (ບວກເພີ່ມຈາກຍອດ)<input id="i_vat" type="number" inputmode="decimal" value="${vat}" oninput="invTot()"></label></div>
+  <label>ໝາຍເຫດ / ເງື່ອນໄຂການຊຳລະ<textarea id="i_note" rows="3">${esc(b.note||'')}</textarea></label>
   <div class="pnl" style="margin-bottom:12px" id="i_tot"></div>
-  <div class="g2"><button class="btn ghost" onclick="${v?`invView(${id})`:'closeSheet()'}">ยกเลิก</button><button class="btn" onclick="saveInv(${id||0})">บันทึก Invoice</button></div>`);
+  <div class="g2"><button class="btn ghost" onclick="${v?`invView(${id})`:'closeSheet()'}">ຍົກເລີກ</button><button class="btn" onclick="saveInv(${id||0})">ບັນທຶກ Invoice</button></div>`);
   irows();invTot();
 }
 function irows(){
-  $('irows').innerHTML=fItems.map((it,i)=>`<div style="display:grid;grid-template-columns:1fr 62px 90px 34px;gap:6px;margin-bottom:8px;align-items:center"><input list="plist" placeholder="ชื่อรายการ" value="${esc(it.name)}" oninput="fi(${i},'name',this.value)" onchange="pickItem(${i},this.value)"><input type="number" inputmode="decimal" value="${esc(it.qty)}" aria-label="จำนวน" oninput="fi(${i},'qty',this.value)"><input type="number" inputmode="decimal" value="${esc(it.price)}" aria-label="ราคา" oninput="fi(${i},'price',this.value)"><button class="btn sm danger" style="padding:0;width:34px" aria-label="ลบรายการ" onclick="delIRow(${i})">×</button></div>`).join('');
+  $('irows').innerHTML=fItems.map((it,i)=>`<div style="display:grid;grid-template-columns:1fr 62px 90px 34px;gap:6px;margin-bottom:8px;align-items:center"><input list="plist" placeholder="ຊື່ລາຍການ" value="${esc(it.name)}" oninput="fi(${i},'name',this.value)" onchange="pickItem(${i},this.value)"><input type="number" inputmode="decimal" value="${esc(it.qty)}" aria-label="ຈຳນວນ" oninput="fi(${i},'qty',this.value)"><input type="number" inputmode="decimal" value="${esc(it.price)}" aria-label="ລາຄາ" oninput="fi(${i},'price',this.value)"><button class="btn sm danger" style="padding:0;width:34px" aria-label="ລຶບລາຍການ" onclick="delIRow(${i})">×</button></div>`).join('');
 }
 function fi(i,k,v){fItems[i][k]=v;invTot()}
 function addIRow(){fItems.push({name:'',qty:1,price:''});irows()}
@@ -421,19 +458,19 @@ function delIRow(i){fItems.splice(i,1);if(!fItems.length)fItems.push({name:'',qt
 function pickItem(i,val){const p=S.products.find(x=>x.name===val);if(p&&!num(fItems[i].price)){fItems[i].price=p.price;irows();invTot()}}
 function invTot(){
   const c=calcInv(fItems,$('i_disc').value,num($('i_vat').value));
-  $('i_tot').innerHTML=`<div class="line"><span class="muted">รวมเป็นเงิน</span><span class="num">${fmt(c.sub)}</span></div><div class="line"><span class="muted">ส่วนลด</span><span class="num">−${fmt(c.d)}</span></div><div class="line"><span class="muted">VAT</span><span class="num">${fmt(c.vat)}</span></div><div class="line"><b>ยอดรวมสุทธิ</b><b class="num" style="font-size:18px">${fmt(c.total)}</b></div>`;
+  $('i_tot').innerHTML=`<div class="line"><span class="muted">ລວມເປັນເງິນ</span><span class="num">${fmt(c.sub)}</span></div><div class="line"><span class="muted">ສ່ວນຫຼຸດ</span><span class="num">−${fmt(c.d)}</span></div><div class="line"><span class="muted">VAT</span><span class="num">${fmt(c.vat)}</span></div><div class="line"><b>ຍອດລວມສຸດທິ</b><b class="num" style="font-size:18px;color:var(--brand)">${fmt(c.total)}</b></div>`;
 }
 function saveInv(id){
   const name=$('i_name').value.trim();
-  if(!name){toast('กรุณาใส่ชื่อลูกค้า');return}
+  if(!name){toast('ກະລຸນາໃສ່ຊື່ລູກຄ້າ');return}
   const items=fItems.filter(i=>String(i.name).trim()&&num(i.qty)>0).map(i=>({name:String(i.name).trim(),qty:num(i.qty),price:num(i.price)}));
-  if(!items.length){toast('กรุณาใส่รายการอย่างน้อย 1 รายการ');return}
+  if(!items.length){toast('ກະລຸນາໃສ່ລາຍການຢ່າງໜ້ອຍ 1 ລາຍການ');return}
   const d={custName:name,custAddr:$('i_addr').value.trim(),custPhone:$('i_phone').value.trim(),ts:fromYmd($('i_date').value),due:fromYmd($('i_due').value),items,discount:Math.max(0,num($('i_disc').value)),vat:Math.max(0,num($('i_vat').value)),note:$('i_note').value.trim()};
   let v;
   if(id){v=S.invoices.find(x=>x.id===id);Object.assign(v,d);
     const e=S.entries.find(e=>e.auto==='inv'&&e.ref===id);if(e){e.amount=invTotal(v);e.note=v.no+' · '+v.custName+' · '+(v.payMethod||'')}}
   else{v={id:uid(),no:'INV-'+String(S.invSeq++).padStart(4,'0'),status:'unpaid',...d};S.invoices.push(v)}
-  save();tab='inv';render();invView(v.id);toast('บันทึกแล้ว');
+  save();tab='inv';render();invView(v.id);toast('ບັນທຶກແລ້ວ');
 }
 function invDoc(v){
   return {no:v.no,ts:v.ts,due:v.due,name:v.custName,lines:[v.custAddr,v.custPhone?'Tel '+v.custPhone:''].filter(Boolean),items:v.items,calc:calcInv(v.items,v.discount,v.vat),vatRate:v.vat||0,note:v.note,status:v.status,paidTs:v.paidTs,payMethod:v.payMethod};
@@ -441,28 +478,28 @@ function invDoc(v){
 async function invView(id){
   const v=S.invoices.find(x=>x.id===id);if(!v)return;
   openSheet(`<div class="row between" style="margin-bottom:10px"><h2 style="margin:0">${esc(v.no)}</h2>${invBadge(v)}</div>
-  <div id="invwrap" style="display:grid;gap:10px"><div class="empty">กำลังสร้างใบ invoice…</div></div><div style="height:12px"></div>
-  <div class="g2"><button class="btn" onclick="downloadInvPdf(${id})">ดาวน์โหลด PDF</button><button class="btn ghost" onclick="printInv(${id})">พิมพ์</button></div>
-  <div class="g2" style="margin-top:10px">${v.status==='paid'?`<button class="btn ghost" onclick="unmarkPaid(${id})">ยกเลิกสถานะจ่ายแล้ว</button>`:`<button class="btn ghost" onclick="paidSheet(${id})">รับเงินแล้ว</button>`}<button class="btn ghost" onclick="invSheet(${id})">แก้ไข</button></div>
-  <div class="g2" style="margin-top:10px"><button class="btn danger" onclick="confirmAct('ลบ ${v.no}? ถ้าจ่ายแล้ว รายการรับเงินจะถูกลบด้วย','delInv(${id})')">ลบ</button><button class="btn" onclick="closeSheet()">ปิด</button></div>`);
+  <div id="invwrap" style="display:grid;gap:10px"><div class="empty">ກຳລັງສ້າງໃບ Invoice…</div></div><div style="height:12px"></div>
+  <div class="g2"><button class="btn" onclick="downloadInvPdf(${id})">ດາວໂຫຼດ PDF</button><button class="btn ghost" onclick="printInv(${id})">ພິມ</button></div>
+  <div class="g2" style="margin-top:10px">${v.status==='paid'?`<button class="btn ghost" onclick="unmarkPaid(${id})">ຍົກເລີກສະຖານະຈ່າຍແລ້ວ</button>`:`<button class="btn ghost" onclick="paidSheet(${id})">ຮັບເງິນແລ້ວ</button>`}<button class="btn ghost" onclick="invSheet(${id})">ແກ້ໄຂ</button></div>
+  <div class="g2" style="margin-top:10px"><button class="btn danger" onclick="confirmAct('ລຶບ ${v.no}? ຖ້າຈ່າຍແລ້ວ ລາຍການຮັບເງິນຈະຖືກລຶບດ້ວຍ','delInv(${id})')">ລຶບ</button><button class="btn" onclick="closeSheet()">ປິດ</button></div>`);
   try{
     const pages=await getInv(invDoc(v)),w=$('invwrap');if(!w)return;
     w.innerHTML='';
     pages.forEach(c=>{c.style.cssText='width:100%;height:auto;display:block;border-radius:8px;border:1px solid var(--line)';w.appendChild(c)});
-  }catch(e){const w=$('invwrap');if(w)w.innerHTML='<div class="empty">สร้างใบ invoice ไม่สำเร็จ</div>'}
+  }catch(e){const w=$('invwrap');if(w)w.innerHTML='<div class="empty">ສ້າງໃບ Invoice ບໍ່ສຳເລັດ</div>'}
 }
 function paidSheet(id){
   const v=S.invoices.find(x=>x.id===id);
-  openSheet(`<h2>รับเงินแล้ว</h2><p class="muted" style="margin-top:-6px">${esc(v.no)} · ${fmt(invTotal(v))} · รับชำระด้วย</p>
-  <div class="pay">${['เงินสด','QR','โอนเงิน'].map(m=>`<button class="chip" onclick="markPaid(${id},'${m}')">${m}</button>`).join('')}</div>
-  <button class="btn ghost full" onclick="invView(${id})">ยกเลิก</button>`);
+  openSheet(`<h2>ຮັບເງິນແລ້ວ</h2><p class="muted" style="margin-top:-6px">${esc(v.no)} · ${fmt(invTotal(v))} · ຮັບຊຳລະດ້ວຍ</p>
+  <div class="pay">${['ເງິນສົດ','QR','ໂອນເງິນ'].map(m=>`<button class="chip" onclick="markPaid(${id},'${m}')">${m}</button>`).join('')}</div>
+  <button class="btn ghost full" onclick="invView(${id})">ຍົກເລີກ</button>`);
 }
 function markPaid(id,m){
   const v=S.invoices.find(x=>x.id===id);if(!v)return;
   v.status='paid';v.paidTs=Date.now();v.payMethod=m;
   S.entries=S.entries.filter(e=>!(e.auto==='inv'&&e.ref===id));
-  S.entries.push({id:uid(),ts:v.paidTs,type:'income',cat:'รับชำระ Invoice',amount:invTotal(v),note:v.no+' · '+v.custName+' · '+m,auto:'inv',ref:id});
-  save();render();invView(id);toast('บันทึกการรับเงินแล้ว');
+  S.entries.push({id:uid(),ts:v.paidTs,type:'income',cat:'ຮັບຊຳລະ Invoice',amount:invTotal(v),note:v.no+' · '+v.custName+' · '+m,auto:'inv',ref:id});
+  save();render();invView(id);toast('ບັນທຶກການຮັບເງິນແລ້ວ');
 }
 function unmarkPaid(id){
   const v=S.invoices.find(x=>x.id===id);if(!v)return;
@@ -473,18 +510,18 @@ function unmarkPaid(id){
 function delInv(id){
   S.invoices=S.invoices.filter(x=>x.id!==id);
   S.entries=S.entries.filter(e=>!(e.auto==='inv'&&e.ref===id));
-  save();closeSheet();render();toast('ลบ Invoice แล้ว');
+  save();closeSheet();render();toast('ລຶບ Invoice ແລ້ວ');
 }
 
-/* ---------- วาดใบ invoice ตามแบบ terracotta (ใช้ทั้งพรีวิว พิมพ์ และ PDF) ---------- */
+/* ---------- ແຕ້ມໃບ Invoice Canvas ---------- */
 async function invPages(d){
   const sh=S.shop,W=595,H=842,K=3,M=27;
-  const TC='#C2410C',INK='#1F2937',GREY='#6B7280',LINE='#F6C9A6',BG='#FFF5EB',ROWBG='#FFF9F3';
-  const FF="'IBM Plex Sans Thai','Noto Sans Thai','Noto Sans Lao',Helvetica,Arial,sans-serif";
+  const TC='#DC2626',INK='#1C1917',GREY='#6B7280',LINE='#FCD34D',BG='#FEFDFB',ROWBG='#FFFDF7';
+  const FF="'Noto Sans Lao','Noto Sans',Helvetica,Arial,sans-serif";
   const c0=d.calc,vr=d.vatRate||0;
-  const PM={'เงินสด':'Cash','QR':'QR','โอนเงิน':'Bank transfer'};
+  const PM={'ເງິນສົດ':'Cash','QR':'QR','ໂອນເງິນ':'Bank transfer'};
   const sample=[sh.name,sh.addr,sh.phone,sh.taxId,sh.note,d.name,d.note,...d.lines,...d.items.map(i=>i.name),'INVOICE FROM BILL TO Description Qty Rate Amount TOTAL Notes Scan to pay 0123456789'].join(' ');
-  try{await Promise.race([Promise.all(['400','500','700'].map(w=>document.fonts.load(`${w} 16px 'IBM Plex Sans Thai'`,sample))),new Promise(r=>setTimeout(r,3000))])}catch(e){}
+  try{await Promise.race([Promise.all(['400','500','700'].map(w=>document.fonts.load(`${w} 16px 'Noto Sans Lao'`,sample))),new Promise(r=>setTimeout(r,3000))])}catch(e){}
   let qrImg=null;
   if(sh.qr&&d.status!=='paid')qrImg=await new Promise(r=>{const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=sh.qr});
   const pages=[];let c,x,y;
@@ -493,9 +530,9 @@ async function invPages(d){
   const hl=(py,col,lw)=>{x.strokeStyle=col;x.lineWidth=lw||0.7;x.beginPath();x.moveTo(M,py);x.lineTo(W-M,py);x.stroke()};
   const COL={q:287,r:439,a:W-M-3};
   const head=()=>{
-    hl(y,'#E8825A',0.9);
-    T('Description',M+3,y+14,{w:700,sz:12,col:TC});T('Qty',COL.q,y+14,{w:700,sz:12,col:TC,al:'center'});
-    T('Rate',COL.r,y+14,{w:700,sz:12,col:TC,al:'right'});T('Amount',COL.a,y+14,{w:700,sz:12,col:TC,al:'right'});
+    hl(y,TC,0.9);
+    T('ລາຍການ',M+3,y+14,{w:700,sz:12,col:TC});T('ຈຳນວນ',COL.q,y+14,{w:700,sz:12,col:TC,al:'center'});
+    T('ລາຄາ',COL.r,y+14,{w:700,sz:12,col:TC,al:'right'});T('ລວມ',COL.a,y+14,{w:700,sz:12,col:TC,al:'right'});
     y+=27;hl(y,LINE);
   };
   const np=(first,noHead)=>{
@@ -597,60 +634,60 @@ function buildPdf(canvases){
 async function downloadInvPdf(id){
   const v=S.invoices.find(x=>x.id===id);if(!v)return;
   try{
-    toast('กำลังสร้าง PDF…');
+    toast('ກຳລັງສ້າງ PDF…');
     const blob=buildPdf(await getInv(invDoc(v))),name=v.no+'.pdf';
     let dl=null;try{dl=window.claude?await window.claude.use('downloads'):null}catch(e){}
     if(dl){
-      try{await dl.save({filename:name,data:blob});toast('บันทึก PDF แล้ว')}
-      catch(e){if(!e||e.code!=='declined')toast('บันทึกไฟล์ไม่ได้')}
+      try{await dl.save({filename:name,data:blob});toast('ບັນທຶກ PDF ແລ້ວ')}
+      catch(e){if(!e||e.code!=='declined')toast('ບໍ່ສາມາດບັນທຶກໄຟລ໌ໄດ້')}
     }else{
       const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();
-      toast('สร้าง PDF แล้ว');
+      toast('ສ້າງ PDF ແລ້ວ');
     }
-  }catch(e){toast('สร้าง PDF ไม่สำเร็จ')}
+  }catch(e){toast('ສ້າງ PDF ບໍ່ສຳເລັດ')}
 }
 async function printInv(id){
   const v=S.invoices.find(x=>x.id===id);if(!v)return;
   try{
     const pages=await getInv(invDoc(v)),pa=$('printArea');pa.innerHTML='';
     pages.forEach(c=>{const im=new Image();im.src=c.toDataURL('image/jpeg',0.92);pa.appendChild(im)});
-    setTimeout(()=>{try{window.print()}catch(e){toast('หน้านี้พิมพ์ไม่ได้ ให้ใช้ “ดาวน์โหลด PDF” แล้วพิมพ์จากไฟล์')}},300);
-  }catch(e){toast('พิมพ์ไม่สำเร็จ')}
+    setTimeout(()=>{try{window.print()}catch(e){toast('ໜ້ານີ້ພິມບໍ່ໄດ້ ໃຫ້ໃຊ້ “ດາວໂຫຼດ PDF” ແລ້ວພິມຈາກໄຟລ໌')}},300);
+  }catch(e){toast('ພິມບໍ່ສຳເລັດ')}
 }
 function voidSale(id){
   const s=S.sales.find(x=>x.id===id);if(!s)return;const now=Date.now();
-  s.items.forEach(i=>{const p=prod(i.pid);if(p){p.stock+=i.qty;S.moves.push({id:uid(),ts:now,pid:p.id,name:p.name,qty:i.qty,kind:'ยกเลิกบิล '+s.no})}});
+  s.items.forEach(i=>{const p=prod(i.pid);if(p){p.stock+=i.qty;S.moves.push({id:uid(),ts:now,pid:p.id,name:p.name,qty:i.qty,kind:'ຍົກເລີກບິນ '+s.no})}});
   S.sales=S.sales.filter(x=>x.id!==id);
   S.entries=S.entries.filter(e=>!(e.auto==='sale'&&String(e.note).startsWith(s.no)));
-  save();closeSheet();render();toast('ยกเลิกบิลแล้ว');
+  save();closeSheet();render();toast('ຍົກເລີກບິນແລ້ວ');
 }
 
-/* ---------- สินค้า ---------- */
+/* ---------- ສິນຄ້າ ---------- */
 function viewProd(){
-  return `<div class="row between" style="margin:6px 0 12px"><h2 style="margin:0">สินค้า (${S.products.length})</h2><button class="btn sm" onclick="prodSheet()">+ เพิ่มสินค้า</button></div>
-  ${S.products.length?`<div class="list">${S.products.map(p=>{const m=p.price?(p.price-p.cost)/p.price*100:0;return `<div class="item" tabindex="0" onclick="prodSheet(${p.id})"><div class="lead">${thumb(p)}<div style="min-width:0"><div class="t">${esc(p.name)}</div><div class="muted small">${esc(p.cat||'ไม่ระบุหมวด')} · ${esc(p.sku||'ไม่มีบาร์โค้ด')}</div></div></div><div style="text-align:right;flex:none"><div class="num"><b>${fmt(p.price)}</b></div><div class="small num ${p.price<p.cost?'bad':'muted'}">ทุน ${fmt(p.cost)} · ${m.toFixed(0)}%</div></div></div>`}).join('')}</div>`:`<div class="empty">ยังไม่มีสินค้า กด “เพิ่มสินค้า” เพื่อเริ่มต้น</div>`}`;
+  return `<div class="row between" style="margin:6px 0 12px"><h2 style="margin:0">ສິນຄ້າ (${S.products.length})</h2><button class="btn sm" onclick="prodSheet()">+ ເພີ່ມສິນຄ້າ</button></div>
+  ${S.products.length?`<div class="list">${S.products.map(p=>{const m=p.price?(p.price-p.cost)/p.price*100:0;return `<div class="item" tabindex="0" onclick="prodSheet(${p.id})"><div class="lead">${thumb(p)}<div style="min-width:0"><div class="t">${esc(p.name)}</div><div class="muted small">${esc(p.cat||'ບໍ່ລະບຸໝວດ')} · ${esc(p.sku||'ບໍ່ມີບາໂຄດ')}</div></div></div><div style="text-align:right;flex:none"><div class="num"><b>${fmt(p.price)}</b></div><div class="small num ${p.price<p.cost?'bad':'muted'}">ທຶນ ${fmt(p.cost)} · ${m.toFixed(0)}%</div></div></div>`}).join('')}</div>`:`<div class="empty">ຍັງບໍ່ມີສິນຄ້າ ກົດ “ເພີ່ມສິນຄ້າ” ເພື່ອເລີ່ມຕົ້ນ</div>`}`;
 }
-function imgPrev(d){return d?`<img src="${d}" alt="">`:'ยังไม่มีรูป'}
+function imgPrev(d){return d?`<img src="${d}" alt="">`:'ຍັງບໍ່ມີຮູບ'}
 function prodSheet(id){
   const p=id?prod(id):{name:'',sku:'',cat:'',cost:'',price:'',stock:0,min:5,img:''};
   tmpImg=p.img||'';
-  openSheet(`<h2>${id?'แก้ไขสินค้า':'เพิ่มสินค้า'}</h2>
-  <div class="pimg"><div class="pv" id="pimg">${imgPrev(tmpImg)}</div><div><input id="f_img" type="file" accept="image/*" style="display:none" onchange="pickProdImg(this)"><button class="btn sm ghost" onclick="$('f_img').click()">ถ่ายรูป / เลือกรูป</button> <button class="btn sm danger" onclick="tmpImg='';$('pimg').innerHTML=imgPrev('')">ลบรูป</button></div></div>
-  <label>ชื่อสินค้า<input id="f_name" value="${esc(p.name)}"></label>
-  <div class="g2"><label>บาร์โค้ด<input id="f_sku" value="${esc(p.sku)}"></label><label>หมวดหมู่<input id="f_cat" value="${esc(p.cat)}"></label></div>
-  <div class="g2"><label>ต้นทุน/ชิ้น<input id="f_cost" type="number" inputmode="decimal" value="${p.cost}" oninput="calcMargin()"></label><label>ราคาขาย<input id="f_price" type="number" inputmode="decimal" value="${p.price}" oninput="calcMargin()"></label></div>
-  <label>ตั้งราคาจากกำไรที่ต้องการ (% ของราคาขาย)<input id="f_tg" type="number" inputmode="decimal" placeholder="เช่น 30" oninput="tgPrice()"></label>
+  openSheet(`<h2>${id?'ແກ້ໄຂສິນຄ້າ':'ເພີ່ມສິນຄ້າ'}</h2>
+  <div class="pimg"><div class="pv" id="pimg">${imgPrev(tmpImg)}</div><div><input id="f_img" type="file" accept="image/*" style="display:none" onchange="pickProdImg(this)"><button class="btn sm ghost" onclick="$('f_img').click()">ຖ່າຍຮູບ / ເລືອກຮູບ</button> <button class="btn sm danger" onclick="tmpImg='';$('pimg').innerHTML=imgPrev('')">ລຶບຮູບ</button></div></div>
+  <label>ຊື່ສິນຄ້າ<input id="f_name" value="${esc(p.name)}"></label>
+  <div class="g2"><label>ບາໂຄດ<input id="f_sku" value="${esc(p.sku)}"></label><label>ໝວດໝູ່<input id="f_cat" value="${esc(p.cat)}"></label></div>
+  <div class="g2"><label>ຕົ້ນທຶນ/ອັນ<input id="f_cost" type="number" inputmode="decimal" value="${p.cost}" oninput="calcMargin()"></label><label>ລາຄາຂາຍ<input id="f_price" type="number" inputmode="decimal" value="${p.price}" oninput="calcMargin()"></label></div>
+  <label>ຕັ້ງລາຄາຈາກກຳໄລທີ່ຕ້ອງການ (% ຂອງລາຄາຂາຍ)<input id="f_tg" type="number" inputmode="decimal" placeholder="ເຊັ່ນ 30" oninput="tgPrice()"></label>
   <div class="pnl" style="margin-bottom:12px" id="mg"></div>
-  <div class="g2">${id?`<label>คงเหลือ<input value="${p.stock}" disabled></label>`:`<label>จำนวนเริ่มต้น<input id="f_stock" type="number" inputmode="numeric" value="0"></label>`}<label>แจ้งเตือนเมื่อเหลือ ≤<input id="f_min" type="number" inputmode="numeric" value="${p.min}"></label></div>
-  ${id?'<p class="note" style="margin-top:-4px">ปรับสต็อกและรับสินค้าเข้าได้ที่แท็บ “สต็อก/ต้นทุน”</p>':''}
-  <div class="g2" style="margin-top:6px">${id?`<button class="btn danger" onclick="confirmAct('ลบสินค้านี้? ประวัติการขายเดิมจะยังอยู่','delProd(${id})')">ลบสินค้า</button>`:`<button class="btn ghost" onclick="closeSheet()">ยกเลิก</button>`}<button class="btn" onclick="saveProd(${id||0})">บันทึก</button></div>`);
+  <div class="g2">${id?`<label>ຄົງເຫຼືອ<input value="${p.stock}" disabled></label>`:`<label>ຈຳນວນເລີ່ມຕົ້ນ<input id="f_stock" type="number" inputmode="numeric" value="0"></label>`}<label>ແຈ້ງເຕືອນເມື່ອຍັງເຫຼືອ ≤<input id="f_min" type="number" inputmode="numeric" value="${p.min}"></label></div>
+  ${id?'<p class="note" style="margin-top:-4px">ປັບສະຕັອກ ແລະ ຮັບສິນຄ້າເຂົ້າໄດ້ທີ່ແທັບ “ສະຕັອກ/ຕົ້ນທຶນ”</p>':''}
+  <div class="g2" style="margin-top:6px">${id?`<button class="btn danger" onclick="confirmAct('ລຶບສິນຄ້ານີ້? ປະຫວັດການຂາຍເດີມຈະຍັງຢູ່','delProd(${id})')">ລຶບສິນຄ້າ</button>`:`<button class="btn ghost" onclick="closeSheet()">ຍົກເລີກ</button>`}<button class="btn" onclick="saveProd(${id||0})">ບັນທຶກ</button></div>`);
   calcMargin();
 }
 function pickProdImg(el){readImg(el.files[0],320,d=>{tmpImg=d;$('pimg').innerHTML=imgPrev(d)},0.72)}
 function calcMargin(){
   const c=num($('f_cost').value),p=num($('f_price').value),pr=p-c;
   const mg=p>0?pr/p*100:0,mk=c>0?pr/c*100:0;
-  $('mg').innerHTML=`<div class="line"><span class="muted">กำไรต่อชิ้น</span><b class="num ${pr<0?'bad':'good'}">${fmt(pr)}</b></div><div class="line"><span class="muted">อัตรากำไร (จากราคาขาย)</span><span class="num">${mg.toFixed(1)}%</span></div><div class="line"><span class="muted">บวกเพิ่มจากต้นทุน</span><span class="num">${mk.toFixed(1)}%</span></div>`;
+  $('mg').innerHTML=`<div class="line"><span class="muted">ກຳໄລຕໍ່ອັນ</span><b class="num ${pr<0?'bad':'good'}">${fmt(pr)}</b></div><div class="line"><span class="muted">ອັດຕາກຳໄລ (ຈາກລາຄາຂາຍ)</span><span class="num">${mg.toFixed(1)}%</span></div><div class="line"><span class="muted">ບວກເພີ່ມຈາກຕົ້ນທຶນ</span><span class="num">${mk.toFixed(1)}%</span></div>`;
 }
 function tgPrice(){
   const c=num($('f_cost').value),t=num($('f_tg').value);
@@ -658,67 +695,67 @@ function tgPrice(){
 }
 function saveProd(id){
   const name=$('f_name').value.trim();
-  if(!name){toast('กรุณาใส่ชื่อสินค้า');return}
+  if(!name){toast('ກະລຸນາໃສ່ຊື່ສິນຄ້າ');return}
   const sku=$('f_sku').value.trim();
-  if(sku&&S.products.some(x=>x.sku===sku&&x.id!==id)){toast('บาร์โค้ดนี้ถูกใช้แล้ว');return}
+  if(sku&&S.products.some(x=>x.sku===sku&&x.id!==id)){toast('ບາໂຄດນີ້ຖືກໃຊ້ແລ້ວ');return}
   const d={name,sku,cat:$('f_cat').value.trim(),cost:num($('f_cost').value),price:num($('f_price').value),min:num($('f_min').value),img:tmpImg};
   if(id){Object.assign(prod(id),d)}
   else{
     const st=Math.max(0,Math.floor(num($('f_stock').value)));
     const p={id:uid(),stock:st,...d};S.products.push(p);
-    if(st)S.moves.push({id:uid(),ts:Date.now(),pid:p.id,name:p.name,qty:st,kind:'ยอดตั้งต้น'});
+    if(st)S.moves.push({id:uid(),ts:Date.now(),pid:p.id,name:p.name,qty:st,kind:'ຍອດເລີ່ມຕົ້ນ'});
   }
-  save();closeSheet();render();toast('บันทึกแล้ว');
+  save();closeSheet();render();toast('ບັນທຶກແລ້ວ');
 }
-function delProd(id){S.products=S.products.filter(p=>p.id!==id);cart=cart.filter(c=>c.pid!==id);save();closeSheet();render();toast('ลบสินค้าแล้ว')}
+function delProd(id){S.products=S.products.filter(p=>p.id!==id);cart=cart.filter(c=>c.pid!==id);save();closeSheet();render();toast('ລຶບສິນຄ້າແລ້ວ')}
 
-/* ---------- สต็อก / ต้นทุน ---------- */
+/* ---------- ສະຕັອກ / ຕົ້ນທຶນ ---------- */
 function setStockSeg(k){stockSeg=k;render()}
 function viewStock(){
-  return `<h2 style="margin-top:6px">สต็อกและต้นทุน</h2>${seg([['stock','สต็อกสินค้า'],['cost','ต้นทุนสินค้า']],stockSeg,'setStockSeg')}${stockSeg==='stock'?viewStockList():viewCost()}`;
+  return `<h2 style="margin-top:6px">ສະຕັອກ ແລະ ຕົ້ນທຶນ</h2>${seg([['stock','ສະຕັອກສິນຄ້າ'],['cost','ຕົ້ນທຶນສິນຄ້າ']],stockSeg,'setStockSeg')}${stockSeg==='stock'?viewStockList():viewCost()}`;
 }
 function viewStockList(){
   const cost=S.products.reduce((a,p)=>a+Math.max(p.stock,0)*p.cost,0);
   const retail=S.products.reduce((a,p)=>a+Math.max(p.stock,0)*p.price,0);
   const low=S.products.filter(p=>p.stock<=p.min);
-  const L=[...S.products].sort((a,b)=>(a.stock<=a.min?0:1)-(b.stock<=b.min?0:1)||a.name.localeCompare(b.name,'th'));
+  const L=[...S.products].sort((a,b)=>(a.stock<=a.min?0:1)-(b.stock<=b.min?0:1)||a.name.localeCompare(b.name,'lo'));
   const mv=[...S.moves].reverse().slice(0,15);
-  return `<div class="strip"><div><span class="muted small">มูลค่า (ต้นทุน)</span><b class="num">${fmt(cost)}</b></div><div><span class="muted small">มูลค่า (ราคาขาย)</span><b class="num">${fmt(retail)}</b></div><div><span class="muted small">ใกล้หมด</span><b class="${low.length?'bad':''}">${low.length} รายการ</b></div></div>
-  <h3>รายการสินค้า</h3>
-  ${L.length?`<div class="list">${L.map(p=>`<div class="item" style="cursor:default"><div class="lead">${thumb(p)}<div style="min-width:0"><div class="t">${esc(p.name)}</div><div class="muted small num">ทุนเฉลี่ย ${fmt(p.cost)}</div></div></div><div class="row"><div style="text-align:right"><b class="num" style="font-size:17px">${p.stock}</b><br>${p.stock<=0?'<span class="badge bad">หมด</span>':p.stock<=p.min?'<span class="badge warn">ใกล้หมด</span>':''}</div><div style="display:flex;flex-direction:column;gap:6px"><button class="btn sm" onclick="recvSheet(${p.id})">รับเข้า</button><button class="btn sm ghost" onclick="adjSheet(${p.id})">ปรับยอด</button></div></div></div>`).join('')}</div>`:'<div class="empty">ยังไม่มีสินค้า</div>'}
-  <h3>การเคลื่อนไหวล่าสุด</h3>
-  ${mv.length?`<div class="list" style="padding:0 14px">${mv.map(m=>`<div class="line"><div><div>${esc(m.name)}</div><div class="muted small">${esc(m.kind)} · ${fdt(m.ts)}</div></div><b class="num ${m.qty<0?'bad':'good'}">${m.qty>0?'+':''}${m.qty}</b></div>`).join('')}</div>`:'<div class="empty">ยังไม่มีการเคลื่อนไหว</div>'}`;
+  return `<div class="strip"><div><span class="muted small">ມູນຄ່າ (ຕົ້ນທຶນ)</span><b class="num">${fmt(cost)}</b></div><div><span class="muted small">ມູນຄ່າ (ລາຄາຂາຍ)</span><b class="num">${fmt(retail)}</b></div><div><span class="muted small">ໃກ້ໝົດ</span><b class="${low.length?'bad':''}">${low.length} ລາຍການ</b></div></div>
+  <h3>ລາຍການສິນຄ້າ</h3>
+  ${L.length?`<div class="list">${L.map(p=>`<div class="item" style="cursor:default"><div class="lead">${thumb(p)}<div style="min-width:0"><div class="t">${esc(p.name)}</div><div class="muted small num">ຕົ້ນທຶນສະເລ່ຍ ${fmt(p.cost)}</div></div></div><div class="row"><div style="text-align:right"><b class="num" style="font-size:17px">${p.stock}</b><br>${p.stock<=0?'<span class="badge bad">ໝົດ</span>':p.stock<=p.min?'<span class="badge warn">ໃກ້ໝົດ</span>':''}</div><div style="display:flex;flex-direction:column;gap:6px"><button class="btn sm" onclick="recvSheet(${p.id})">ຮັບເຂົ້າ</button><button class="btn sm ghost" onclick="adjSheet(${p.id})">ປັບຍອດ</button></div></div></div>`).join('')}</div>`:'<div class="empty">ຍັງບໍ່ມີສິນຄ້າ</div>'}
+  <h3>ການເຄື່ອນໄຫວຫຼ້າສຸດ</h3>
+  ${mv.length?`<div class="list" style="padding:0 14px">${mv.map(m=>`<div class="line"><div><div>${esc(m.name)}</div><div class="muted small">${esc(m.kind)} · ${fdt(m.ts)}</div></div><b class="num ${m.qty<0?'bad':'good'}">${m.qty>0?'+':''}${m.qty}</b></div>`).join('')}</div>`:'<div class="empty">ຍັງບໍ່ມີການເຄື່ອນໄຫວ</div>'}`;
 }
 function viewCost(){
   const L=[...S.products].sort((a,b)=>marg(a)-marg(b));
   const pu=[...S.purchases].reverse().slice(0,15);
-  return `<h3 style="margin-top:8px">ตัวคำนวณต้นทุนต่อหน่วย</h3>
+  return `<h3 style="margin-top:8px">ຄຳນວນຕົ້ນທຶນຕໍ່ໜ່ວຍ</h3>
   <div class="pnl" style="padding:14px 14px 4px">
-    <div class="g2"><label>ราคาซื้อรวม<input id="c_total" type="number" inputmode="decimal" oninput="calcCost()"></label><label>จำนวนที่ได้<input id="c_qty" type="number" inputmode="numeric" oninput="calcCost()"></label></div>
-    <div class="g2"><label>ค่าขนส่ง<input id="c_ship" type="number" inputmode="decimal" oninput="calcCost()"></label><label>ภาษี/อากรนำเข้า<input id="c_tax" type="number" inputmode="decimal" oninput="calcCost()"></label></div>
-    <div class="g2"><label>ค่าอื่น ๆ (บรรจุภัณฑ์ ค่าแรง)<input id="c_oth" type="number" inputmode="decimal" oninput="calcCost()"></label><label>กำไรที่ต้องการ (%)<input id="c_tg" type="number" inputmode="decimal" value="30" oninput="calcCost()"></label></div>
+    <div class="g2"><label>ລາຄາຊື້ລວມ<input id="c_total" type="number" inputmode="decimal" oninput="calcCost()"></label><label>ຈຳນວນທີ່ໄດ້<input id="c_qty" type="number" inputmode="numeric" oninput="calcCost()"></label></div>
+    <div class="g2"><label>ຄ່າຂົນສົ່ງ<input id="c_ship" type="number" inputmode="decimal" oninput="calcCost()"></label><label>ພາສີ/ອາກອນນຳເຂົ້າ<input id="c_tax" type="number" inputmode="decimal" oninput="calcCost()"></label></div>
+    <div class="g2"><label>ຄ່າອື່ນໆ (ຫຸ້ມຫໍ່, ແຮງງານ)<input id="c_oth" type="number" inputmode="decimal" oninput="calcCost()"></label><label>ກຳໄລທີ່ຕ້ອງການ (%)<input id="c_tg" type="number" inputmode="decimal" value="30" oninput="calcCost()"></label></div>
     <div id="c_out"></div>
   </div>
-  <h3>ต้นทุนและอัตรากำไรแต่ละสินค้า</h3>
-  ${L.length?`<div class="list">${L.map(p=>{const m=marg(p);return `<div class="item" style="cursor:default"><div class="lead">${thumb(p)}<div style="min-width:0"><div class="t">${esc(p.name)}</div><div class="muted small num">ทุน ${fmt(p.cost)} → ขาย ${fmt(p.price)}</div></div></div><div style="text-align:right;flex:none"><b class="num ${p.price<p.cost?'bad':''}">${m.toFixed(1)}%</b><br>${p.price<p.cost?'<span class="badge bad">ขายต่ำกว่าทุน</span>':m<15?'<span class="badge warn">กำไรต่ำ</span>':`<span class="small muted num">+${fmt(p.price-p.cost)}/ชิ้น</span>`}</div></div>`}).join('')}</div>`:'<div class="empty">ยังไม่มีสินค้า</div>'}
-  <h3>ประวัติการซื้อเข้า</h3>
-  ${pu.length?`<div class="list" style="padding:0 14px">${pu.map(x=>`<div class="line"><div><div>${esc(x.name)}</div><div class="muted small num">${x.qty} ชิ้น × ${fmt(x.uc)}${x.extra?` + ค่าใช้จ่ายเพิ่ม ${fmt(x.extra)}`:''} · ${fdt(x.ts)}</div></div><b class="num">${fmt(x.unit)}<span class="muted small">/ชิ้น</span></b></div>`).join('')}</div>`:'<div class="empty">ยังไม่มีประวัติ กด “รับเข้า” ที่แท็บสต็อกเมื่อซื้อสินค้า</div>'}
-  <p class="note">ต้นทุนสินค้าใช้วิธีถัวเฉลี่ยถ่วงน้ำหนัก: ทุกครั้งที่รับของเข้า ระบบรวมค่าขนส่งและค่าใช้จ่ายเพิ่มเข้าต้นทุน แล้วเฉลี่ยกับของเดิมที่เหลืออยู่</p>`;
+  <h3>ຕົ້ນທຶນ ແລະ ອັດຕາກຳໄລແຕ່ລະສິນຄ້າ</h3>
+  ${L.length?`<div class="list">${L.map(p=>{const m=marg(p);return `<div class="item" style="cursor:default"><div class="lead">${thumb(p)}<div style="min-width:0"><div class="t">${esc(p.name)}</div><div class="muted small num">ທຶນ ${fmt(p.cost)} → ຂາຍ ${fmt(p.price)}</div></div></div><div style="text-align:right;flex:none"><b class="num ${p.price<p.cost?'bad':''}">${m.toFixed(1)}%</b><br>${p.price<p.cost?'<span class="badge bad">ຂາຍຕ່ຳກວ່າຕົ້ນທຶນ</span>':m<15?'<span class="badge warn">ກຳໄລຕ່ຳ</span>':`<span class="small muted num">+${fmt(p.price-p.cost)}/ອັນ</span>`}</div></div>`}).join('')}</div>`:'<div class="empty">ຍັງບໍ່ມີສິນຄ້າ</div>'}
+  <h3>ປະຫວັດການຊື້ເຂົ້າ</h3>
+  ${pu.length?`<div class="list" style="padding:0 14px">${pu.map(x=>`<div class="line"><div><div>${esc(x.name)}</div><div class="muted small num">${x.qty} ອັນ × ${fmt(x.uc)}${x.extra?` + ຄ່າໃຊ້ຈ່າຍເພີ່ມ ${fmt(x.extra)}`:''} · ${fdt(x.ts)}</div></div><b class="num">${fmt(x.unit)}<span class="muted small">/ອັນ</span></b></div>`).join('')}</div>`:'<div class="empty">ຍັງບໍ່ມີປະຫວັດ ກົດ “ຮັບເຂົ້າ” ທີ່ແທັບສະຕັອກເມື່ອຊື້ສິນຄ້າ</div>'}
+  <p class="note">ຕົ້ນທຶນສິນຄ້າໃຊ້ວິທີສະເລ່ຍຖ່ວງນ້ຳໜັກ: ທຸກຄັ້ງທີ່ຮັບເຄື່ອງເຂົ້າ ລະບົບລວມຄ່າຂົນສົ່ງ ແລະ ຄ່າໃຊ້ຈ່າຍເພີ່ມເຂົ້າຕົ້ນທຶນ ແລ້ວສະເລ່ຍກັບຂອງເດີມທີ່ເຫຼືອຢູ່</p>`;
 }
 const marg=p=>p.price?(p.price-p.cost)/p.price*100:0;
 function calcCost(){
   const t=num($('c_total').value),n=num($('c_qty').value),sh=num($('c_ship').value),tx=num($('c_tax').value),ot=num($('c_oth').value),tg=num($('c_tg').value);
   const all=t+sh+tx+ot,u=n>0?all/n:0,sp=(tg>0&&tg<100)?u/(1-tg/100):0;
-  $('c_out').innerHTML=`<div class="line"><span class="muted">ต้นทุนรวมทั้งหมด</span><b class="num">${fmt(all)}</b></div><div class="line"><span class="muted">ต้นทุนต่อหน่วย</span><b class="num">${fmt(u)}</b></div><div class="line"><span class="muted">ราคาขายแนะนำ (กำไร ${tg||0}%)</span><b class="num good">${fmt(sp)}</b></div><div class="line"><span class="muted">กำไรต่อหน่วย</span><span class="num">${fmt(sp-u)}</span></div>`;
+  $('c_out').innerHTML=`<div class="line"><span class="muted">ຕົ້ນທຶນລວມທັງໝົດ</span><b class="num">${fmt(all)}</b></div><div class="line"><span class="muted">ຕົ້ນທຶນຕໍ່ໜ່ວຍ</span><b class="num">${fmt(u)}</b></div><div class="line"><span class="muted">ລາຄາຂາຍແນະນຳ (ກຳໄລ ${tg||0}%)</span><b class="num good">${fmt(sp)}</b></div><div class="line"><span class="muted">ກຳໄລຕໍ່ໜ່ວຍ</span><span class="num">${fmt(sp-u)}</span></div>`;
 }
 function recvSheet(id){
   const p=prod(id);
-  openSheet(`<h2>รับสินค้าเข้า</h2><p class="muted" style="margin-top:-6px">${esc(p.name)} · คงเหลือ ${p.stock}</p>
-  <div class="g2"><label>จำนวนที่รับ<input id="r_qty" type="number" inputmode="numeric" oninput="calcRecv(${id})"></label><label>ราคาซื้อต่อชิ้น<input id="r_cost" type="number" inputmode="decimal" value="${p.cost}" oninput="calcRecv(${id})"></label></div>
-  <label>ค่าขนส่ง/ภาษี/ค่าใช้จ่ายอื่นของล็อตนี้ (รวมทั้งล็อต)<input id="r_extra" type="number" inputmode="decimal" value="0" oninput="calcRecv(${id})"></label>
+  openSheet(`<h2>ຮັບສິນຄ້າເຂົ້າ</h2><p class="muted" style="margin-top:-6px">${esc(p.name)} · ຄົງເຫຼືອ ${p.stock}</p>
+  <div class="g2"><label>ຈຳນວນທີ່ຮັບ<input id="r_qty" type="number" inputmode="numeric" oninput="calcRecv(${id})"></label><label>ລາຄາຊື້ຕໍ່ອັນ<input id="r_cost" type="number" inputmode="decimal" value="${p.cost}" oninput="calcRecv(${id})"></label></div>
+  <label>ຄ່າຂົນສົ່ງ/ພາສີ/ຄ່າໃຊ້ຈ່າຍອື່ນໆຂອງລັອດນີ້ (ລວມທັງໝົດ)<input id="r_extra" type="number" inputmode="decimal" value="0" oninput="calcRecv(${id})"></label>
   <div class="pnl" style="margin-bottom:12px" id="rv"></div>
-  <p class="note" style="margin-top:-4px">ระบบรวมค่าใช้จ่ายเพิ่มเข้าต้นทุน คำนวณต้นทุนถัวเฉลี่ยใหม่ และบันทึกเป็นเงินออก “ซื้อสินค้าเข้าสต็อก” ให้อัตโนมัติ</p>
-  <div class="g2"><button class="btn ghost" onclick="closeSheet()">ยกเลิก</button><button class="btn" onclick="saveRecv(${id})">บันทึกรับเข้า</button></div>`);
+  <p class="note" style="margin-top:-4px">ລະບົບລວມຄ່າໃຊ້ຈ່າຍເພີ່ມເຂົ້າຕົ້ນທຶນ ຄຳນວນຕົ້ນທຶນສະເລ່ຍໃໝ່ ແລະ ບັນທຶກເປັນເງິນອອກ “ຊື້ສິນຄ້າເຂົ້າສະຕັອກ” ອັດຕະໂນມັດ</p>
+  <div class="g2"><button class="btn ghost" onclick="closeSheet()">ຍົກເລີກ</button><button class="btn" onclick="saveRecv(${id})">ບັນທຶກຮັບເຂົ້າ</button></div>`);
   calcRecv(id);
 }
 function landed(qty,uc,extra){return qty>0?r2(uc+extra/qty):uc}
@@ -726,65 +763,65 @@ function newAvg(p,qty,unit){const base=Math.max(p.stock,0);return qty+base>0?r2(
 function calcRecv(id){
   const p=prod(id),qty=Math.floor(num($('r_qty').value)),uc=num($('r_cost').value),ex=num($('r_extra').value);
   const un=landed(qty,uc,ex);
-  $('rv').innerHTML=`<div class="line"><span class="muted">ยอดจ่ายรอบนี้</span><b class="num">${fmt(qty*uc+ex)}</b></div><div class="line"><span class="muted">ต้นทุนล็อตนี้/ชิ้น (รวมค่าใช้จ่ายเพิ่ม)</span><span class="num">${fmt(un)}</span></div><div class="line"><span class="muted">ต้นทุนเฉลี่ยใหม่/ชิ้น</span><b class="num">${fmt(newAvg(p,qty,un))}</b></div><div class="line"><span class="muted">คงเหลือหลังรับ</span><span class="num">${p.stock+Math.max(qty,0)}</span></div>`;
+  $('rv').innerHTML=`<div class="line"><span class="muted">ຍອດຈ່າຍຮອບນີ້</span><b class="num">${fmt(qty*uc+ex)}</b></div><div class="line"><span class="muted">ຕົ້ນທຶນລັອດນີ້/ອັນ (ລວມຄ່າໃຊ້ຈ່າຍເພີ່ມ)</span><span class="num">${fmt(un)}</span></div><div class="line"><span class="muted">ຕົ້ນທຶນສະເລ່ຍໃໝ່/ອັນ</span><b class="num">${fmt(newAvg(p,qty,un))}</b></div><div class="line"><span class="muted">ຄົງເຫຼືອຫຼັງຮັບ</span><span class="num">${p.stock+Math.max(qty,0)}</span></div>`;
 }
 function saveRecv(id){
   const p=prod(id),qty=Math.floor(num($('r_qty').value)),uc=num($('r_cost').value),ex=num($('r_extra').value);
-  if(qty<=0){toast('กรุณาใส่จำนวน');return}
+  if(qty<=0){toast('ກະລຸນາໃສ່ຈຳນວນ');return}
   const now=Date.now(),un=landed(qty,uc,ex);
   p.cost=newAvg(p,qty,un);p.stock+=qty;
-  S.moves.push({id:uid(),ts:now,pid:id,name:p.name,qty,kind:'รับเข้า @'+fmt(un)});
+  S.moves.push({id:uid(),ts:now,pid:id,name:p.name,qty,kind:'ຮັບເຂົ້າ @'+fmt(un)});
   S.purchases.push({id:uid(),ts:now,pid:id,name:p.name,qty,uc,extra:ex,unit:un});
-  S.entries.push({id:uid(),ts:now,type:'expense',cat:'ซื้อสินค้าเข้าสต็อก',amount:r2(qty*uc+ex),note:p.name+' × '+qty,auto:'stock'});
-  save();closeSheet();render();toast('รับสินค้าเข้าแล้ว');
+  S.entries.push({id:uid(),ts:now,type:'expense',cat:'ຊື້ສິນຄ້າເຂົ້າສະຕັອກ',amount:r2(qty*uc+ex),note:p.name+' × '+qty,auto:'stock'});
+  save();closeSheet();render();toast('ຮັບສິນຄ້າເຂົ້າແລ້ວ');
 }
 function adjSheet(id){
   const p=prod(id);
-  openSheet(`<h2>ปรับยอดสต็อก</h2><p class="muted" style="margin-top:-6px">${esc(p.name)} · ในระบบ ${p.stock}</p>
-  <label>จำนวนที่นับได้จริง<input id="a_qty" type="number" inputmode="numeric" value="${p.stock}"></label>
-  <div class="g2"><button class="btn ghost" onclick="closeSheet()">ยกเลิก</button><button class="btn" onclick="saveAdj(${id})">บันทึก</button></div>`);
+  openSheet(`<h2>ປັບຍອດສະຕັອກ</h2><p class="muted" style="margin-top:-6px">${esc(p.name)} · ໃນລະບົບ ${p.stock}</p>
+  <label>ຈຳນວນທີ່ນັບໄດ້ຕົວຈິງ<input id="a_qty" type="number" inputmode="numeric" value="${p.stock}"></label>
+  <div class="g2"><button class="btn ghost" onclick="closeSheet()">ຍົກເລີກ</button><button class="btn" onclick="saveAdj(${id})">ບັນທຶກ</button></div>`);
 }
 function saveAdj(id){
   const p=prod(id),n=Math.floor(num($('a_qty').value)),d=n-p.stock;
   if(d===0){closeSheet();return}
-  p.stock=n;S.moves.push({id:uid(),ts:Date.now(),pid:id,name:p.name,qty:d,kind:'ปรับยอดตามนับจริง'});
-  save();closeSheet();render();toast('ปรับยอดแล้ว');
+  p.stock=n;S.moves.push({id:uid(),ts:Date.now(),pid:id,name:p.name,qty:d,kind:'ປັບຍອດຕາມນັບຕົວຈິງ'});
+  save();closeSheet();render();toast('ປັບຍອດແລ້ວ');
 }
 
-/* ---------- รายรับ-รายจ่าย ---------- */
-const EXP_CATS=['ค่าเช่าที่','ค่าน้ำ-ค่าไฟ','เงินเดือน/ค่าแรง','ค่าขนส่ง','ค่าการตลาด','อื่น ๆ'];
-const INC_CATS=['รายได้อื่น ๆ','คืนเงินจากซัพพลายเออร์','อื่น ๆ'];
+/* ---------- ລາຍຮັບ-ລາຍຈ່າຍ ---------- */
+const EXP_CATS=['ຄ່າເຊົ່າສະຖານທີ່','ຄ່ານ້ຳ-ຄ່າໄຟ','ເງິນເດືອນ/ຄ່າຈ້າງ','ຄ່າຂົນສົ່ງ','ຄ່າການຕະຫຼາດ','ອື່ນໆ'];
+const INC_CATS=['ລາຍຮັບອື່ນໆ','ເງິນຄືນຈາກຜູ້ສະໜອງ','ອື່ນໆ'];
 function viewCash(){
   const L=S.entries.filter(e=>inPeriod(e.ts)).sort((a,b)=>b.ts-a.ts);
   const inn=L.filter(e=>e.type==='income').reduce((a,e)=>a+e.amount,0);
   const out=L.filter(e=>e.type==='expense').reduce((a,e)=>a+e.amount,0);
-  return `<h2 style="margin:6px 0 0">รายรับ-รายจ่าย</h2>
+  return `<h2 style="margin:6px 0 0">ລາຍຮັບ-ລາຍຈ່າຍ</h2>
   ${periodChips()}
-  <div class="strip"><div><span class="muted small">เงินเข้า</span><b class="num good">${fmt(inn)}</b></div><div><span class="muted small">เงินออก</span><b class="num bad">${fmt(out)}</b></div><div><span class="muted small">สุทธิ</span><b class="num ${inn-out<0?'bad':''}">${fmt(inn-out)}</b></div></div>
-  <div class="g2" style="margin:12px 0"><button class="btn" onclick="entrySheet('income')">+ รายรับ</button><button class="btn ghost" onclick="entrySheet('expense')">+ รายจ่าย</button></div>
-  ${L.length?`<div class="list">${L.map(e=>`<div class="item" style="cursor:default"><div><div class="t">${esc(e.cat)}</div><div class="muted small">${esc(e.note||'')}${e.note?' · ':''}${fdt(e.ts)}</div></div><div class="row"><b class="num ${e.type==='income'?'good':'bad'}">${e.type==='income'?'+':'−'}${fmt(e.amount)}</b>${e.auto?'':`<button class="btn sm danger" aria-label="ลบรายการ" onclick="confirmAct('ลบรายการนี้?','delEntry(${e.id})')">ลบ</button>`}</div></div>`).join('')}</div>`:'<div class="empty">ยังไม่มีรายการในช่วงนี้</div>'}
-  <p class="note">รายการขายและการซื้อสินค้าเข้าสต็อกถูกบันทึกให้อัตโนมัติ ส่วนรายการอื่นเพิ่มเองได้</p>`;
+  <div class="strip"><div><span class="muted small">ເງິນເຂົ້າ</span><b class="num good">${fmt(inn)}</b></div><div><span class="muted small">ເງິນອອກ</span><b class="num bad">${fmt(out)}</b></div><div><span class="muted small">ສຸດທິ</span><b class="num ${inn-out<0?'bad':''}">${fmt(inn-out)}</b></div></div>
+  <div class="g2" style="margin:12px 0"><button class="btn" onclick="entrySheet('income')">+ ລາຍຮັບ</button><button class="btn ghost" onclick="entrySheet('expense')">+ ລາຍຈ່າຍ</button></div>
+  ${L.length?`<div class="list">${L.map(e=>`<div class="item" style="cursor:default"><div><div class="t">${esc(e.cat)}</div><div class="muted small">${esc(e.note||'')}${e.note?' · ':''}${fdt(e.ts)}</div></div><div class="row"><b class="num ${e.type==='income'?'good':'bad'}">${e.type==='income'?'+':'−'}${fmt(e.amount)}</b>${e.auto?'':`<button class="btn sm danger" aria-label="ລຶບລາຍການ" onclick="confirmAct('ລຶບລາຍການນີ້?','delEntry(${e.id})')">ລຶບ</button>`}</div></div>`).join('')}</div>`:'<div class="empty">ຍັງບໍ່ມີລາຍການໃນໄລຍະນີ້</div>'}
+  <p class="note">ລາຍການຂາຍ ແລະ ການຊື້ສິນຄ້າເຂົ້າສະຕັອກຖືກບັນທຶກອັດຕະໂນມັດ ສ່ວນລາຍການອື່ນສາມາດເພີ່ມເອງໄດ້</p>`;
 }
 function entrySheet(type){
   const cats=type==='income'?INC_CATS:EXP_CATS;
-  openSheet(`<h2>${type==='income'?'เพิ่มรายรับ':'เพิ่มรายจ่าย'}</h2>
-  <label>จำนวนเงิน<input id="e_amt" type="number" inputmode="decimal"></label>
-  <label>หมวด<select id="e_cat">${cats.map(c=>`<option>${c}</option>`).join('')}</select></label>
-  <label>บันทึกเพิ่มเติม<input id="e_note"></label>
-  <div class="g2"><button class="btn ghost" onclick="closeSheet()">ยกเลิก</button><button class="btn" onclick="saveEntry('${type}')">บันทึก</button></div>`);
+  openSheet(`<h2>${type==='income'?'ເພີ່ມລາຍຮັບ':'ເພີ່ມລາຍຈ່າຍ'}</h2>
+  <label>ຈຳນວນເງິນ<input id="e_amt" type="number" inputmode="decimal"></label>
+  <label>ໝວດ<select id="e_cat">${cats.map(c=>`<option>${c}</option>`).join('')}</select></label>
+  <label>ບັນທຶກເພີ່ມເຕີມ<input id="e_note"></label>
+  <div class="g2"><button class="btn ghost" onclick="closeSheet()">ຍົກເລີກ</button><button class="btn" onclick="saveEntry('${type}')">ບັນທຶກ</button></div>`);
 }
 function saveEntry(type){
   const a=num($('e_amt').value);
-  if(a<=0){toast('กรุณาใส่จำนวนเงิน');return}
+  if(a<=0){toast('ກະລຸນາໃສ່ຈຳນວນເງິນ');return}
   S.entries.push({id:uid(),ts:Date.now(),type,cat:$('e_cat').value,amount:a,note:$('e_note').value.trim()});
-  save();closeSheet();render();toast('บันทึกแล้ว');
+  save();closeSheet();render();toast('ບັນທຶກແລ້ວ');
 }
 function delEntry(id){S.entries=S.entries.filter(e=>e.id!==id);save();closeSheet();render()}
 
-/* ---------- รายงาน ---------- */
+/* ---------- ລາຍງານ ---------- */
 function setRepSeg(k){repSeg=k;render()}
 function viewRep(){
-  return `<h2 style="margin:6px 0 0">รายงาน</h2>${seg([['sales','รายงานยอดขาย'],['pnl','กำไร-ขาดทุน']],repSeg,'setRepSeg')}${periodChips()}${repSeg==='sales'?viewSales():viewPnl()}`;
+  return `<h2 style="margin:6px 0 0">ລາຍງານ</h2>${seg([['sales','ລາຍງານຍອດຂາຍ'],['pnl','ກຳໄລ-ຂາດທຶນ']],repSeg,'setRepSeg')}${periodChips()}${repSeg==='sales'?viewSales():viewPnl()}`;
 }
 function viewSales(){
   const L=S.sales.filter(s=>inPeriod(s.ts)).sort((a,b)=>b.ts-a.ts);
@@ -797,19 +834,19 @@ function viewSales(){
   const mx=Math.max(1,...bars.map(b=>b.v));
   const tp={};L.forEach(s=>s.items.forEach(i=>{const t=tp[i.name]||(tp[i.name]={q:0,r:0});t.q+=i.qty;t.r+=i.price*i.qty}));
   const top=Object.entries(tp).sort((a,b)=>b[1].r-a[1].r).slice(0,5);
-  return `<div class="strip"><div><span class="muted small">ยอดขาย</span><b class="num">${fmt(rev)}</b></div><div><span class="muted small">จำนวนบิล</span><b class="num">${n}</b></div><div><span class="muted small">เฉลี่ย/บิล</span><b class="num">${fmt(n?rev/n:0)}</b></div></div>
-  <p class="note">ขายได้ ${pcs} ชิ้น · ส่วนลดรวม ${fmt(disc)}</p>
-  <h3>ช่องทางชำระเงิน</h3>
-  <div class="pnl"><div class="meter"><i style="width:${pc(cash)}%;background:var(--brand)"></i><i style="width:${pc(qr)}%;background:var(--warn)"></i><i style="width:${pc(oth)}%;background:var(--muted)"></i></div>
-    <div class="line"><span><span class="badge">■</span> เงินสด</span><span class="num">${fmt(cash)} · ${pc(cash).toFixed(0)}%</span></div>
-    <div class="line"><span><span class="badge warn">■</span> QR</span><span class="num">${fmt(qr)} · ${pc(qr).toFixed(0)}%</span></div>
-    ${oth>0?`<div class="line"><span>อื่น ๆ (บิลเก่า)</span><span class="num">${fmt(oth)}</span></div>`:''}</div>
-  <h3>ยอดขายรายวัน (${days} วันล่าสุด)</h3>
-  <div class="chart"><div class="bars">${bars.map(b=>`<div class="b" title="${b.d.toLocaleDateString('th-TH')} ${fmt(b.v)}" style="height:${Math.max(2,b.v/mx*100)}%"></div>`).join('')}</div><div class="barl">${bars.map((b,i)=>`<span>${days>7&&i%5!==0?'':b.d.getDate()}</span>`).join('')}</div><div class="muted small" style="margin-top:6px">สูงสุด ${fmt(mx===1&&!bars.some(b=>b.v)?0:mx)}</div></div>
-  <h3>สินค้าขายดี (ตามยอดขาย)</h3>
-  ${top.length?`<div class="list" style="padding:0 14px">${top.map(([nm,t])=>`<div class="line"><div>${esc(nm)}<div class="muted small">ขายได้ ${t.q} ชิ้น</div></div><b class="num">${fmt(t.r)}</b></div>`).join('')}</div>`:'<div class="empty">ยังไม่มียอดขายในช่วงนี้</div>'}
-  <h3>รายการบิล${L.length>40?' (40 บิลล่าสุด)':''}</h3>
-  ${L.length?`<div class="list">${L.slice(0,40).map(s=>`<div class="item" tabindex="0" onclick="saleSheet(${s.id})"><div><div class="t">${esc(s.no)}${s.cust?' · '+esc(s.cust):''}</div><div class="muted small">${fdt(s.ts)} · ${esc(s.method)}</div></div><b class="num">${fmt(s.total)}</b></div>`).join('')}</div><p class="note">แตะที่บิลเพื่อดูรายละเอียด สร้าง Invoice หรือยกเลิกบิล</p>`:'<div class="empty">ยังไม่มีบิลในช่วงนี้</div>'}`;
+  return `<div class="strip"><div><span class="muted small">ຍອດຂາຍ</span><b class="num">${fmt(rev)}</b></div><div><span class="muted small">ຈຳນວນບິນ</span><b class="num">${n}</b></div><div><span class="muted small">ສະເລ່ຍ/ບິນ</span><b class="num">${fmt(n?rev/n:0)}</b></div></div>
+  <p class="note">ຂາຍໄດ້ ${pcs} ອັນ · ສ່ວນຫຼຸດລວມ ${fmt(disc)}</p>
+  <h3>ຊ່ອງທາງຊຳລະເງິນ</h3>
+  <div class="pnl"><div class="meter"><i style="width:${pc(cash)}%;background:var(--brand)"></i><i style="width:${pc(qr)}%;background:var(--yellow)"></i><i style="width:${pc(oth)}%;background:var(--muted)"></i></div>
+    <div class="line"><span><span class="badge brand">■</span> ເງິນສົດ</span><span class="num">${fmt(cash)} · ${pc(cash).toFixed(0)}%</span></div>
+    <div class="line"><span><span class="badge">■</span> QR</span><span class="num">${fmt(qr)} · ${pc(qr).toFixed(0)}%</span></div>
+    ${oth>0?`<div class="line"><span>ອື່ນໆ (ບິນເກົ່າ)</span><span class="num">${fmt(oth)}</span></div>`:''}</div>
+  <h3>ຍອດຂາຍລາຍວັນ (${days} ມື້ຫຼ້າສຸດ)</h3>
+  <div class="chart"><div class="bars">${bars.map(b=>`<div class="b" title="${b.d.toLocaleDateString('lo-LA')} ${fmt(b.v)}" style="height:${Math.max(2,b.v/mx*100)}%"></div>`).join('')}</div><div class="barl">${bars.map((b,i)=>`<span>${days>7&&i%5!==0?'':b.d.getDate()}</span>`).join('')}</div><div class="muted small" style="margin-top:6px">ສູງສຸດ ${fmt(mx===1&&!bars.some(b=>b.v)?0:mx)}</div></div>
+  <h3>ສິນຄ້າຂາຍດີ (ຕາມຍອດຂາຍ)</h3>
+  ${top.length?`<div class="list" style="padding:0 14px">${top.map(([nm,t])=>`<div class="line"><div>${esc(nm)}<div class="muted small">ຂາຍໄດ້ ${t.q} ອັນ</div></div><b class="num">${fmt(t.r)}</b></div>`).join('')}</div>`:'<div class="empty">ຍັງບໍ່ມียອດຂາຍໃນໄລຍະນີ້</div>'}
+  <h3>ລາຍການບິນ${L.length>40?' (40 ບິນຫຼ້າສຸດ)':''}</h3>
+  ${L.length?`<div class="list">${L.slice(0,40).map(s=>`<div class="item" tabindex="0" onclick="saleSheet(${s.id})"><div><div class="t">${esc(s.no)}${s.cust?' · '+esc(s.cust):''}</div><div class="muted small">${fdt(s.ts)} · ${esc(s.method)}</div></div><b class="num">${fmt(s.total)}</b></div>`).join('')}</div><p class="note">ກົດທີ່ບິນເພື່ອເບິ່ງລາຍລະອຽດ, ສ້າງ Invoice ຫຼື ຍົກເລີກບິນ</p>`:'<div class="empty">ຍັງບໍ່ມີບິນໃນໄລຍະນີ້</div>'}`;
 }
 function viewPnl(){
   const sales=S.sales.filter(s=>inPeriod(s.ts));
@@ -823,45 +860,49 @@ function viewPnl(){
   const tp={};sales.forEach(s=>s.items.forEach(i=>{const t=tp[i.name]||(tp[i.name]={q:0,p:0});t.q+=i.qty;t.p+=(i.price-i.cost)*i.qty}));
   const top=Object.entries(tp).sort((a,b)=>b[1].p-a[1].p).slice(0,5);
   const gm=rev?gross/rev*100:0;
-  return `<div class="hero"><span class="muted">${net<0?'ขาดทุนสุทธิ':'กำไรสุทธิ'}</span><div class="big num ${net<0?'bad':'good'}">${fmt(Math.abs(net))}</div><span class="muted small">${sales.length} บิล · กำไรขั้นต้น ${gm.toFixed(1)}% ของยอดขาย</span></div>
+  return `<div class="hero"><span class="muted">${net<0?'ຂາດທຶນສຸດທິ':'ກຳໄລສຸດທິ'}</span><div class="big num ${net<0?'bad':'good'}">${fmt(Math.abs(net))}</div><span class="muted small">${sales.length} ບິນ · ກຳໄລຂັ້ນຕົ້ນ ${gm.toFixed(1)}% ຂອງຍອດຂາຍ</span></div>
   <div class="pnl" style="margin-top:12px">
-    <div class="line"><span>ยอดขาย (หลังหักส่วนลด)</span><span class="num">${fmt(rev)}</span></div>
-    <div class="line"><span class="muted">หัก ต้นทุนสินค้าที่ขาย</span><span class="num">−${fmt(cogs)}</span></div>
-    <div class="line"><b>กำไรขั้นต้น</b><b class="num">${fmt(gross)}</b></div>
-    <div class="line"><span class="muted">บวก รายได้อื่น / Invoice ที่รับเงินแล้ว</span><span class="num">+${fmt(oi)}</span></div>
-    ${Object.entries(by).map(([k,v])=>`<div class="line"><span class="muted">หัก ${esc(k)}</span><span class="num">−${fmt(v)}</span></div>`).join('')}
-    ${!Object.keys(by).length?`<div class="line"><span class="muted">หัก ค่าใช้จ่ายดำเนินงาน</span><span class="num">−${fmt(0)}</span></div>`:''}
-    <div class="line"><b>${net<0?'ขาดทุนสุทธิ':'กำไรสุทธิ'}</b><b class="num ${net<0?'bad':'good'}">${fmt(net)}</b></div>
+    <div class="line"><span>ຍອດຂາຍ (ຫຼັງຫັກສ່ວນຫຼຸດ)</span><span class="num">${fmt(rev)}</span></div>
+    <div class="line"><span class="muted">ຫັກ ຕົ້ນທຶນສິນຄ້າທີ່ຂາຍ</span><span class="num">−${fmt(cogs)}</span></div>
+    <div class="line"><b>ກຳໄລຂັ້ນຕົ້ນ</b><b class="num">${fmt(gross)}</b></div>
+    <div class="line"><span class="muted">ບວກ ລາຍຮັບອື່ນ / Invoice ທີ່ຮັບເງິນແລ້ວ</span><span class="num">+${fmt(oi)}</span></div>
+    ${Object.entries(by).map(([k,v])=>`<div class="line"><span class="muted">ຫັກ ${esc(k)}</span><span class="num">−${fmt(v)}</span></div>`).join('')}
+    ${!Object.keys(by).length?`<div class="line"><span class="muted">ຫັກ ຄ່າໃຊ້ຈ່າຍດຳເນີນງານ</span><span class="num">−${fmt(0)}</span></div>`:''}
+    <div class="line"><b>${net<0?'ຂາດທຶນສຸດທິ':'ກຳໄລສຸດທິ'}</b><b class="num ${net<0?'bad':'good'}">${fmt(net)}</b></div>
   </div>
-  <p class="note">ต้นทุนใช้ราคาทุน ณ วันที่ขาย การซื้อสินค้าเข้าสต็อกจึงไม่ถูกนับเป็นค่าใช้จ่ายซ้ำ</p>
-  <h3>สินค้าทำกำไรสูงสุด (ก่อนส่วนลด)</h3>
-  ${top.length?`<div class="list" style="padding:0 14px">${top.map(([n,t])=>`<div class="line"><div>${esc(n)}<div class="muted small">ขายได้ ${t.q} ชิ้น</div></div><b class="num ${t.p<0?'bad':''}">${fmt(t.p)}</b></div>`).join('')}</div>`:'<div class="empty">ยังไม่มียอดขายในช่วงนี้</div>'}`;
+  <p class="note">ຕົ້ນທຶນໃຊ້ລາຄາຕົ້ນທຶນ ນະ ວັນທີຂາຍ ການຊື້ສິນຄ້າເຂົ້າສະຕັອກຈຶ່ງບໍ່ຖືກນັບເປັນຄ່າໃຊ້ຈ່າຍຊ້ຳ</p>
+  <h3>ສິນຄ້າເຮັດກຳໄລສູງສຸດ (ກ່ອນສ່ວນຫຼຸດ)</h3>
+  ${top.length?`<div class="list" style="padding:0 14px">${top.map(([n,t])=>`<div class="line"><div>${esc(n)}<div class="muted small">ຂາຍໄດ້ ${t.q} ອັນ</div></div><b class="num ${t.p<0?'bad':''}">${fmt(t.p)}</b></div>`).join('')}</div>`:'<div class="empty">ຍັງບໍ່ມียອດຂາຍໃນໄລຍະນີ້</div>'}`;
 }
 
-/* ---------- ตั้งค่าร้าน ---------- */
+/* ---------- ຕັ້ງຄ່າຮ້ານ ---------- */
 function settingsSheet(){
   const s=S.shop;tmpQr=s.qr||'';
-  openSheet(`<h2>ตั้งค่าร้าน</h2>
-  <label>ชื่อร้าน<input id="s_name" value="${esc(s.name)}"></label>
-  <label>ที่อยู่<input id="s_addr" value="${esc(s.addr)}"></label>
-  <div class="g2"><label>เบอร์โทร<input id="s_phone" value="${esc(s.phone)}"></label><label>เลขผู้เสียภาษี<input id="s_tax" value="${esc(s.taxId)}"></label></div>
-  <div class="g2"><label>สัญลักษณ์เงิน<input id="s_cur" value="${esc(s.cur)}"></label><label>VAT % (0 = ไม่แสดง)<input id="s_vat" type="number" inputmode="decimal" value="${s.vat}"></label></div>
-  <div class="chips" style="margin-top:-6px">${['฿','₭','$'].map(c=>`<button class="chip" onclick="$('s_cur').value='${c}'">${c}</button>`).join('')}<span class="muted small" style="align-self:center">การเปลี่ยนสัญลักษณ์ไม่แปลงราคาสินค้า</span></div>
-  <label>ข้อความท้าย invoice<input id="s_note" value="${esc(s.note)}"></label>
-  <div class="pimg"><div class="pv" id="qrprev" style="width:96px;height:96px">${imgPrev(tmpQr)}</div><div><input id="s_qr" type="file" accept="image/*" style="display:none" onchange="readImg(this.files[0],520,d=>{tmpQr=d;$('qrprev').innerHTML=imgPrev(d)},0.9)"><div class="small muted" style="margin-bottom:6px">รูป QR รับเงินของร้าน (แสดงตอนลูกค้าจ่ายด้วย QR)</div><button class="btn sm ghost" onclick="$('s_qr').click()">อัปโหลดรูป QR</button> <button class="btn sm danger" onclick="tmpQr='';$('qrprev').innerHTML=imgPrev('')">ลบ</button></div></div>
-  <div class="g2"><button class="btn ghost" onclick="closeSheet()">ยกเลิก</button><button class="btn" onclick="saveSettings()">บันทึก</button></div>
-  <h3>จัดการข้อมูล</h3>
-  <div class="g2"><button class="btn ghost" onclick="confirmAct('ล้างข้อมูลทั้งหมด (สินค้า ยอดขาย รายรับรายจ่าย) แล้วเริ่มใหม่ ย้อนกลับไม่ได้','resetAll(false)')">ล้างข้อมูลทั้งหมด</button><button class="btn ghost" onclick="confirmAct('แทนที่ข้อมูลด้วยสินค้าตัวอย่าง','resetAll(true)')">โหลดข้อมูลตัวอย่าง</button></div>
-  <p class="note">ข้อมูลเก็บในเบราว์เซอร์เครื่องนี้เท่านั้น</p>`);
+  openSheet(`<h2>ຕັ້ງຄ່າຮ້ານ</h2>
+  <label>ຊື່ຮ້ານ<input id="s_name" value="${esc(s.name)}"></label>
+  <label>ທີ່ຢູ່<input id="s_addr" value="${esc(s.addr)}"></label>
+  <div class="g2"><label>ເບີໂທ<input id="s_phone" value="${esc(s.phone)}"></label><label>ເລກປະຈຳຕົວຜູ້ເສຍພາສີ<input id="s_tax" value="${esc(s.taxId)}"></label></div>
+  <div class="g2"><label>ສັນຍະລັກເງິນ<input id="s_cur" value="${esc(s.cur)}"></label><label>VAT % (0 = ບໍ່ສະແດງ)<input id="s_vat" type="number" inputmode="decimal" value="${s.vat}"></label></div>
+  <div class="chips" style="margin-top:-6px">${['₭','฿','$'].map(c=>`<button class="chip" onclick="$('s_cur').value='${c}'">${c}</button>`).join('')}<span class="muted small" style="align-self:center">ການປ່ຽນສັນຍະລັກບໍ່ປ່ຽນແປງລາຄາສິນຄ້າ</span></div>
+  <label>ຂໍ້ຄວາມທ້າຍ Invoice<input id="s_note" value="${esc(s.note)}"></label>
+  <div class="pimg"><div class="pv" id="qrprev" style="width:96px;height:96px">${imgPrev(tmpQr)}</div><div><input id="s_qr" type="file" accept="image/*" style="display:none" onchange="readImg(this.files[0],520,d=>{tmpQr=d;$('qrprev').innerHTML=imgPrev(d)},0.9)"><div class="small muted" style="margin-bottom:6px">ຮູບ QR ຮັບເງິນຂອງຮ້ານ (ສະແດງຕອນລູກຄ້າຈ່າຍດ້ວຍ QR)</div><button class="btn sm ghost" onclick="$('s_qr').click()">ອັບໂຫຼດຮູບ QR</button> <button class="btn sm danger" onclick="tmpQr='';$('qrprev').innerHTML=imgPrev('')">ລຶບ</button></div></div>
+  <div class="g2"><button class="btn ghost" onclick="closeSheet()">ຍົກເລີກ</button><button class="btn" onclick="saveSettings()">ບັນທຶກ</button></div>
+  <h3>ຈັດການຂໍ້ມູນ</h3>
+  <div class="g2"><button class="btn ghost" onclick="confirmAct('ລ້າງຂໍ້ມູນທັງໝົດ (ສິນຄ້າ, ຍອດຂາຍ, ລາຍຮັບ-ລາຍຈ່າຍ) ແລ້ວເລີ່ມໃໝ່ ບໍ່ສາມາດຍ້ອນກັບໄດ້','resetAll(false)')">ລ້າງຂໍ້ມູນທັງໝົດ</button><button class="btn ghost" onclick="confirmAct('ປ່ຽນແທນຂໍ້ມູນດ້ວຍສິນຄ້າຕົວຢ່າງ','resetAll(true)')">ໂຫຼດຂໍ້ມູນຕົວຢ່າງ</button></div>
+  <p class="note">ຂໍ້ມູນເກັບໄວ້ໃນບຣາວເຊີເຄື່ອງນີ້ເທົ່ານັ້ນ</p>`);
 }
 function saveSettings(){
-  S.shop={name:$('s_name').value.trim()||'POS ร้านค้า',addr:$('s_addr').value.trim(),phone:$('s_phone').value.trim(),taxId:$('s_tax').value.trim(),cur:$('s_cur').value.trim()||'฿',vat:Math.max(0,num($('s_vat').value)),note:$('s_note').value.trim(),qr:tmpQr};
-  save();closeSheet();render();toast('บันทึกการตั้งค่าแล้ว');
+  S.shop={name:$('s_name').value.trim()||'POS ຮ້ານຄ້າ',addr:$('s_addr').value.trim(),phone:$('s_phone').value.trim(),taxId:$('s_tax').value.trim(),cur:$('s_cur').value.trim()||'₭',vat:Math.max(0,num($('s_vat').value)),note:$('s_note').value.trim(),qr:tmpQr};
+  save();closeSheet();render();toast('ບັນທຶກການຕັ້ງຄ່າແລ້ວ');
 }
-function resetAll(demo){const sh=S.shop;S=demo?seed():blank();S.shop={...sh};cart=[];save();closeSheet();render();toast(demo?'โหลดข้อมูลตัวอย่างแล้ว':'ล้างข้อมูลแล้ว')}
+function resetAll(demo){const sh=S.shop;S=demo?seed():blank();S.shop={...sh};cart=[];save();closeSheet();render();toast(demo?'ໂຫຼດຂໍ້ມູນຕົວຢ່າງແລ້ວ':'ລ້າງຂໍ້ມູນແລ້ວ')}
 
 S=load();
-$('today').textContent=new Date().toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'});
+try{
+  $('today').textContent=new Date().toLocaleDateString('lo-LA',{day:'numeric',month:'short',year:'numeric'});
+}catch(e){
+  $('today').textContent=new Date().toLocaleDateString();
+}
 render();
 </script>
 </body>
